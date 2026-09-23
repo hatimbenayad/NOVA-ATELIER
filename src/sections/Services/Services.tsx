@@ -1,227 +1,231 @@
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import Reveal from '../../components/ui/Reveal'
-import { servicesContent, services } from '../../data/content'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { servicesContent } from '../../data/content'
+import { useReducedMotion } from '../../hooks/useReducedMotion'
+import './Services.css'
 
 export default function Services() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const prefersReduced = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+  const [hasEntered, setHasEntered] = useState(false)
+
+  // Desktop active service index (default 0, never reset on pointerleave)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [prevIndex, setPrevIndex] = useState<number | null>(null)
+  const [zIndices, setZIndices] = useState<number[]>([1, 0, 0, 0])
+  const zCounter = useRef(2)
+
+  // Mobile accordion state (first open by default)
+  const [mobileOpenIndex, setMobileOpenIndex] = useState<number>(0)
+
+  // Entrance trigger via IntersectionObserver
+  useEffect(() => {
+    if (prefersReduced) {
+      setHasEntered(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [prefersReduced])
+
+  // Desktop selection handler
+  const handleSelect = useCallback(
+    (index: number) => {
+      if (index === activeIndex) return
+      zCounter.current += 1
+      const newZ = [...zIndices]
+      newZ[index] = zCounter.current
+      setZIndices(newZ)
+      setPrevIndex(activeIndex)
+      setActiveIndex(index)
+    },
+    [activeIndex, zIndices]
+  )
+
+  // Mobile tap accordion handler
+  const handleMobileToggle = useCallback((index: number) => {
+    setMobileOpenIndex((current) => (current === index ? index : index))
+  }, [])
 
   return (
     <section
-      aria-labelledby="services-headline"
-      style={{ backgroundColor: 'var(--color-bg)' }}
-      className="section-padding"
+      id="services"
+      ref={sectionRef}
+      aria-labelledby="services-heading"
+      className={`services-section ${hasEntered ? 'services-entered' : ''}`}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3.5%' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '4rem' }}>
-          <Reveal>
-            <span className="label" style={{ marginBottom: '1rem', display: 'block' }}>
-              {servicesContent.eyebrow}
-            </span>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h2
-              id="services-headline"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 500,
-                fontSize: 'clamp(1.875rem, 3vw, 3rem)',
-                lineHeight: 1.1,
-                color: 'var(--color-ink)',
-                whiteSpace: 'pre-line',
-                maxWidth: '22ch',
-              }}
-            >
-              {servicesContent.headline}
-            </h2>
-          </Reveal>
-        </div>
+      {/* Visually hidden heading for accessibility */}
+      <h2 id="services-heading" className="sr-only">
+        Our services
+      </h2>
 
-        {/* Service list with hover-reveal image */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '0',
-            alignItems: 'start',
-          }}
-          className="services-grid"
-        >
-          {/* Service list */}
-          <ul role="list" style={{ listStyle: 'none', borderTop: '1px solid var(--color-hairline)' }}>
-            {services.map((service, i) => (
-              <Reveal key={service.id} delay={i * 0.06}>
+      {/* ─── Desktop & Tablet Layout (>= 768px) ─────────────────────────── */}
+      <div className="services-container">
+        {/* Left Column: Interactive List (cols 1-7) */}
+        <div className="services-left">
+          <span className="services-tag">{servicesContent.tag}</span>
+
+          <ul className="services-list" role="list">
+            {servicesContent.items.map((item, i) => {
+              const isActive = i === activeIndex
+              const numStr = String(i + 1).padStart(2, '0')
+
+              return (
                 <li
-                  onMouseEnter={() => setHoveredId(service.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  onFocus={() => setHoveredId(service.id)}
-                  onBlur={() => setHoveredId(null)}
-                  tabIndex={0}
-                  style={{
-                    padding: '2.5rem 0',
-                    borderBottom: '1px solid var(--color-hairline)',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s ease',
-                    paddingLeft: hoveredId === service.id ? '1.5rem' : '0',
-                    transitionProperty: 'padding-left',
-                    transitionDuration: '0.4s',
-                    transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
-                  }}
+                  key={item.slug}
+                  className={`services-row ${isActive ? 'is-active' : ''}`}
+                  style={{ '--row-index': i } as React.CSSProperties}
+                  onPointerEnter={() => handleSelect(i)}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '2rem' }}>
-                    <div>
-                      <h3
-                        style={{
-                          fontFamily: "'Cormorant Garamond', serif",
-                          fontWeight: 500,
-                          fontSize: 'clamp(1.25rem, 1.8vw, 1.875rem)',
-                          color: hoveredId === service.id ? 'var(--color-ink)' : 'var(--color-ink-soft)',
-                          transition: 'color 0.3s ease',
-                          marginBottom: '0.75rem',
-                        }}
-                      >
-                        {service.title}
-                      </h3>
-                      <p
-                        style={{
-                          fontFamily: "'Jost', sans-serif",
-                          fontSize: '0.8125rem',
-                          lineHeight: 1.7,
-                          color: 'var(--color-ink-soft)',
-                          maxWidth: '38ch',
-                        }}
-                      >
-                        {service.description}
-                      </p>
-                    </div>
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontSize: '0.6875rem',
-                        letterSpacing: '0.2em',
-                        color: 'var(--color-ink-soft)',
-                        opacity: 0.4,
-                        flexShrink: 0,
-                        alignSelf: 'center',
-                      }}
-                    >
-                      0{i + 1}
-                    </span>
-                  </div>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
-
-          {/* Hover image reveal */}
-          <div
-            style={{
-              position: 'sticky',
-              top: '80px',
-              height: '480px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginLeft: '4rem',
-            }}
-            className="services-image-panel"
-          >
-            <AnimatePresence mode="wait">
-              {hoveredId && (() => {
-                const service = services.find((s) => s.id === hoveredId)
-                if (!service) return null
-                return (
-                  <motion.div
-                    key={service.id}
-                    initial={{ opacity: 0, scale: 0.96, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96, y: -12 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      width: '100%',
-                      height: '480px',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                      background: 'linear-gradient(135deg, #D2CFC9 0%, #C1BEB8 100%)',
-                      position: 'absolute',
-                    }}
+                  <a
+                    href={item.href || '#contact'}
+                    className="services-row-link"
+                    onFocus={() => handleSelect(i)}
+                    aria-current={isActive ? 'true' : undefined}
                   >
-                    <img
-                      src={service.imageSrc}
-                      alt={service.alt}
-                      width={560}
-                      height={480}
-                      loading="lazy"
-                      decoding="async"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                      onError={(e) => (e.currentTarget.style.display = 'none')}
-                    />
-                    <div
-                      aria-hidden="true"
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        pointerEvents: 'none',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "'Jost', sans-serif",
-                          fontSize: '0.5625rem',
-                          letterSpacing: '0.35em',
-                          textTransform: 'uppercase',
-                          color: 'rgba(14,14,14,0.2)',
-                        }}
-                      >
-                        {service.title}
+                    {/* Number */}
+                    <span className="services-row-num">{numStr}</span>
+
+                    {/* Body: Title with Entrance Mask + Descriptor */}
+                    <div className="services-row-body">
+                      <div className="services-title-mask">
+                        <div
+                          className="services-title-entrance"
+                          style={{
+                            transitionDelay: `${i * 80}ms`,
+                          }}
+                        >
+                          <span className="services-title">{item.title}</span>
+                        </div>
+                      </div>
+
+                      <span className="services-descriptor">
+                        {item.descriptor}
                       </span>
                     </div>
-                  </motion.div>
-                )
-              })()}
-            </AnimatePresence>
 
-            {/* Default state: subtle box */}
-            {!hoveredId && (
+                    {/* Arrow */}
+                    <span className="services-arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+
+                  {/* 1px bottom hairline */}
+                  <div
+                    className="services-hairline"
+                    style={{
+                      transitionDelay: `${i * 80}ms`,
+                    }}
+                  />
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+
+        {/* Right Column: Large Image Panel (cols 8-12) */}
+        <div className="services-right" aria-hidden="true">
+          {servicesContent.items.map((item, i) => {
+            const isActive = i === activeIndex
+            const isPrev = i === prevIndex
+            const isBase = i === 0 && prevIndex === null && activeIndex === 0
+
+            return (
               <div
-                style={{
-                  width: '100%',
-                  height: '480px',
-                  borderRadius: '6px',
-                  border: '1px dashed var(--color-hairline)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                key={item.slug}
+                className={`services-img-layer ${isActive ? 'is-active' : ''} ${
+                  isPrev ? 'is-prev' : ''
+                } ${isBase ? 'is-base' : ''}`}
+                style={{ zIndex: zIndices[i] }}
               >
-                <span
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: '0.5625rem',
-                    letterSpacing: '0.35em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(14,14,14,0.15)',
-                  }}
-                >
-                  Hover to reveal
-                </span>
+                <img
+                  src={item.image.src}
+                  alt=""
+                  width={item.image.width}
+                  height={item.image.height}
+                  decoding="async"
+                  loading="lazy"
+                />
               </div>
-            )}
-          </div>
+            )
+          })}
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 767px) {
-          .services-grid { grid-template-columns: 1fr !important; }
-          .services-image-panel { display: none !important; }
-        }
-      `}</style>
+      {/* ─── Mobile Accordion (< 768px) ─────────────────────────────────── */}
+      <div className="services-mobile-accordion">
+        <span className="services-tag">{servicesContent.tag}</span>
+
+        {servicesContent.items.map((item, i) => {
+          const isOpen = i === mobileOpenIndex
+          const numStr = String(i + 1).padStart(2, '0')
+
+          return (
+            <div
+              key={`mobile-${item.slug}`}
+              className={`services-accordion-row ${isOpen ? 'is-open' : ''}`}
+            >
+              <button
+                type="button"
+                id={`services-mobile-btn-${i}`}
+                aria-expanded={isOpen}
+                aria-controls={`services-mobile-panel-${i}`}
+                className="services-accordion-btn"
+                onClick={() => handleMobileToggle(i)}
+              >
+                <span className="services-row-num">{numStr}</span>
+                <span className="services-title">{item.title}</span>
+                <span className="services-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </button>
+
+              {/* Accordion panel with 0fr -> 1fr transition */}
+              <div
+                id={`services-mobile-panel-${i}`}
+                role="region"
+                aria-labelledby={`services-mobile-btn-${i}`}
+                className="services-accordion-collapse"
+              >
+                <div className="services-accordion-inner">
+                  <div className="services-accordion-media">
+                    <div className="services-accordion-img-box">
+                      <img
+                        src={item.image.src}
+                        alt=""
+                        width={item.image.width}
+                        height={item.image.height}
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="services-accordion-desc">{item.descriptor}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hairline at bottom */}
+              <div
+                className="services-hairline"
+                style={{ transform: 'scaleX(1)' }}
+              />
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }

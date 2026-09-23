@@ -85,6 +85,24 @@ export interface ApproachContent {
   steps: ApproachStep[]
 }
 
+export interface ServiceItem {
+  slug: string
+  title: string
+  descriptor: string
+  href: string
+  image: {
+    src: string
+    alt: string
+    width: number
+    height: number
+  }
+}
+
+export interface ServicesContent {
+  tag: string
+  items: ServiceItem[] /* exactly 4 */
+}
+
 export interface Service {
   id: string
   title: string
@@ -410,41 +428,61 @@ export const featuredProjectContent = {
 
 // ─── Services ─────────────────────────────────────────────────────────────────
 
-export const servicesContent = {
-  eyebrow: 'What We Do',
-  headline: 'Full-spectrum design,\nfrom site to detail.',
+export const servicesContent: ServicesContent = {
+  tag: 'What we do',
+  items: [
+    {
+      slug: 'architecture',
+      title: 'Architecture',
+      descriptor: 'Residential / Hospitality / Commercial',
+      href: '#contact',
+      image: {
+        src: '/images/projects/casa-lumen.jpg',
+        alt: 'Contemporary architecture with clean lines and natural light',
+        width: 1400,
+        height: 933,
+      },
+    },
+    {
+      slug: 'interior-design',
+      title: 'Interior Design',
+      descriptor: 'Concept / Materiality / Furniture',
+      href: '#contact',
+      image: {
+        src: '/images/projects/torre-blanca.jpg',
+        alt: 'Refined interior design featuring natural wood and warm textures',
+        width: 1400,
+        height: 933,
+      },
+    },
+    {
+      slug: 'landscape',
+      title: 'Landscape',
+      descriptor: 'Gardens / Outdoor spaces / Integration',
+      href: '#contact',
+      image: {
+        src: '/images/projects/finca-alba.jpg',
+        alt: 'Expansive curated gardens and native stone terraces',
+        width: 1400,
+        height: 933,
+      },
+    },
+    {
+      slug: 'design-consultancy',
+      title: 'Design Consultancy',
+      descriptor: 'Strategy / Development / Art direction',
+      href: '#contact',
+      image: {
+        src: '/images/projects/hotel-sirena.jpg',
+        alt: 'Strategic design development and architectural consulting',
+        width: 1400,
+        height: 933,
+      },
+    },
+  ],
 }
 
-export const services: Service[] = [
-  {
-    id: 'architecture',
-    title: 'Architecture',
-    description: 'New construction, additions, and adaptive reuse — from concept through construction documents and site supervision.',
-    imageSrc: '/images/services/architecture.jpg',
-    alt: 'Architectural model and elevation drawings on a drafting table',
-  },
-  {
-    id: 'interiors',
-    title: 'Interior Design',
-    description: 'Bespoke interior environments for residential, hospitality, and cultural clients. Material selection, furniture design, lighting design.',
-    imageSrc: '/images/services/interiors.jpg',
-    alt: 'Refined living room interior with natural materials and considered lighting',
-  },
-  {
-    id: 'landscape',
-    title: 'Landscape & Gardens',
-    description: 'Site design, planting strategy, water features, and exterior living spaces conceived as extensions of the interior.',
-    imageSrc: '/images/services/landscape.jpg',
-    alt: 'Curated garden landscape with native planting and stone pathways',
-  },
-  {
-    id: 'advisory',
-    title: 'Design Advisory',
-    description: 'For developers and private clients who require strategic design input before committing to a full commission.',
-    imageSrc: '/images/services/advisory.jpg',
-    alt: 'Architect presenting design options to clients in a meeting room',
-  },
-]
+export const services: ServiceItem[] = servicesContent.items
 
 // ─── Journal ──────────────────────────────────────────────────────────────────
 

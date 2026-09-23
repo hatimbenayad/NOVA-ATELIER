@@ -21,6 +21,7 @@
 
   /* Typography — fonts */
   --font-display-condensed: 'Bebas Neue', 'Oswald', Impact, sans-serif;
+  --font-services-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
 
   /* Typography — sizes */
   --text-label: 0.6875rem;        /* 11px */
