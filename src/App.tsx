@@ -26,11 +26,8 @@ export default function App() {
         {/* Hero section — full viewport, editorial layout */}
         <Hero />
 
-        {/* Selected Work — horizontal scroll gallery */}
-        <SelectedWork />
-
-        {/* Studio Introduction — two-column prose + image */}
-        <StudioIntro />
+        {/* Selected Work — horizontal glide stage with StudioIntro reveal */}
+        <SelectedWork reveal={<StudioIntro />} />
 
         {/* Numbers & Philosophy — dark section */}
         <Numbers />

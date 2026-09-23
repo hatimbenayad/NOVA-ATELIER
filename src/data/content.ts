@@ -17,15 +17,18 @@ export interface HeroCard {
 }
 
 export interface Project {
-  id: string
+  slug: string
   title: string
-  subtitle: string
-  location: string
-  year: string
   category: string
-  imageSrc: string
-  alt: string
-  featured?: boolean
+  year: string
+  city: string
+  country: string
+  image: {
+    src: string
+    alt: string
+  }
+  aspect: 'landscape' | 'portrait'
+  href: string
 }
 
 export interface Stat {
@@ -60,7 +63,7 @@ export interface JournalPost {
 // ─── Navigation ───────────────────────────────────────────────────────────────
 
 export const navLinks: NavLink[] = [
-  { label: 'Work',     href: '#selected-work' },
+  { label: 'Work',     href: '#work' },
   { label: 'Studio',   href: '#studio' },
   { label: 'Approach', href: '#approach' },
   { label: 'Journal',  href: '#journal' },
@@ -122,65 +125,60 @@ export const selectedWorkContent = {
 
 export const projects: Project[] = [
   {
-    id: 'casa-lumen',
-    title: 'Casa Lumen',
-    subtitle: 'A villa defined by light and local stone',
-    location: 'Costa Brava, Spain',
-    year: '2024',
-    category: 'Residential',
-    imageSrc: '/images/projects/casa-lumen.jpg',
-    alt: 'Casa Lumen — a contemporary villa in Costa Brava with timber and stone facades',
-    featured: true,
-  },
-  {
-    id: 'hotel-sirena',
+    slug: 'hotel-sirena',
     title: 'Hotel Sirena',
-    subtitle: 'Boutique hospitality redefined for the Mediterranean',
-    location: 'Palma de Mallorca, Spain',
-    year: '2023',
     category: 'Hospitality',
-    imageSrc: '/images/projects/hotel-sirena.jpg',
-    alt: 'Hotel Sirena — a boutique hotel with calm, curated interiors in Mallorca',
+    year: '2023',
+    city: 'Palma de Mallorca',
+    country: 'Spain',
+    image: {
+      src: '/images/projects/hotel-sirena.jpg',
+      alt: 'Hotel Sirena — a boutique hotel with calm, curated interiors in Mallorca',
+    },
+    aspect: 'landscape',
+    href: '/work/hotel-sirena',
   },
   {
-    id: 'residences-montserrat',
+    slug: 'residences-montserrat',
     title: 'Residences Montserrat',
-    subtitle: 'Urban living sculpted around natural light',
-    location: 'Barcelona, Spain',
-    year: '2023',
     category: 'Residential',
-    imageSrc: '/images/projects/residences-montserrat.jpg',
-    alt: 'Residences Montserrat — multi-unit urban residences in central Barcelona',
+    year: '2023',
+    city: 'Barcelona',
+    country: 'Spain',
+    image: {
+      src: '/images/projects/residences-montserrat.jpg',
+      alt: 'Residences Montserrat — multi-unit urban residences in central Barcelona',
+    },
+    aspect: 'portrait',
+    href: '/work/residences-montserrat',
   },
   {
-    id: 'finca-alba',
+    slug: 'finca-alba',
     title: 'Finca Alba',
-    subtitle: 'Rustic landscape meets rigorous contemporary form',
-    location: 'Seville, Spain',
-    year: '2022',
     category: 'Landscape',
-    imageSrc: '/images/projects/finca-alba.jpg',
-    alt: 'Finca Alba — a rural estate with expansive curated gardens in Seville',
-  },
-  {
-    id: 'torre-blanca',
-    title: 'Torre Blanca',
-    subtitle: 'A private penthouse of absolute restraint',
-    location: 'Madrid, Spain',
     year: '2022',
-    category: 'Interiors',
-    imageSrc: '/images/projects/torre-blanca.jpg',
-    alt: 'Torre Blanca — a penthouse apartment interior in central Madrid',
+    city: 'Seville',
+    country: 'Spain',
+    image: {
+      src: '/images/projects/finca-alba.jpg',
+      alt: 'Finca Alba — a rural estate with expansive curated gardens in Seville',
+    },
+    aspect: 'landscape',
+    href: '/work/finca-alba',
   },
   {
-    id: 'spa-solstice',
-    title: 'Spa Solstice',
-    subtitle: "Wellness architecture aligned with the sun's arc",
-    location: 'Ibiza, Spain',
-    year: '2021',
-    category: 'Hospitality',
-    imageSrc: '/images/projects/spa-solstice.jpg',
-    alt: 'Spa Solstice — a luxury wellness facility in Ibiza oriented to natural light',
+    slug: 'torre-blanca',
+    title: 'Torre Blanca',
+    category: 'Interiors',
+    year: '2022',
+    city: 'Madrid',
+    country: 'Spain',
+    image: {
+      src: '/images/projects/torre-blanca.jpg',
+      alt: 'Torre Blanca — a penthouse apartment interior in central Madrid',
+    },
+    aspect: 'landscape',
+    href: '/work/torre-blanca',
   },
 ]
 

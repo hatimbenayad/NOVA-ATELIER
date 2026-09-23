@@ -1,182 +1,300 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import Reveal from '../../components/ui/Reveal'
-import Button from '../../components/ui/Button'
-import MagneticButton from '../../components/ui/MagneticButton'
-import { selectedWorkContent, projects } from '../../data/content'
+import { useEffect, useRef, useState, useCallback, type ReactNode } from 'react'
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import { projects } from '../../data/content'
+import { useSmoothScroll } from '../../components/ui/SmoothScroll'
+import { useReducedMotion } from '../../hooks/useReducedMotion'
+import ProjectItem from './ProjectItem'
+import { RevealProgressContext } from './RevealProgressContext'
+import './SelectedWork.css'
+
+// ─── Scroll & Animation Config ────────────────────────────────────────────────
+const CONFIG = {
+  HORIZONTAL_END: 0.8, // progress at which the track has finished moving
+  CIRCLE_START: 0.6,   // the circle starts opening while the images are still moving left
+  CIRCLE_END: 1.0,     // the circle covers the entire screen
+}
+
+export interface SelectedWorkProps {
+  reveal?: ReactNode
+}
 
 /**
- * Selected Work — horizontal scrolling project gallery
+ * Selected Work — pinned full-screen stage with right-to-left horizontal glide,
+ * fixed condensed "NOVA" / "ATELIER" typography, and circular portal reveal slot.
  */
-export default function SelectedWork() {
+export default function SelectedWork({ reveal }: SelectedWorkProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const workLayerRef = useRef<HTMLDivElement>(null)
+  const revealSlotRef = useRef<HTMLDivElement>(null)
+  const studioAnchorRef = useRef<HTMLDivElement>(null)
 
+  const { lenis } = useSmoothScroll()
+  const prefersReduced = useReducedMotion()
+
+  // Track total horizontal travel T
+  const [totalTravel, setTotalTravel] = useState<number>(2400)
+
+  // Measure track scroll width accurately
+  const measureTrack = useCallback(() => {
+    if (trackRef.current) {
+      const scrollW = trackRef.current.scrollWidth
+      if (scrollW > 0) {
+        setTotalTravel(scrollW)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    measureTrack()
+
+    const ro = new ResizeObserver(() => {
+      measureTrack()
+    })
+
+    if (trackRef.current) {
+      ro.observe(trackRef.current)
+    }
+
+    window.addEventListener('resize', measureTrack)
+    document.fonts?.ready?.then(measureTrack)
+
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', measureTrack)
+    }
+  }, [measureTrack])
+
+  // Scroll timeline linked to wrapper
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
+    target: wrapperRef,
+    offset: ['start start', 'end end'],
   })
 
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
+  // Horizontal motion: x goes linearly from 0 to -T during 0 -> HORIZONTAL_END
+  const x = useTransform(
+    scrollYProgress,
+    [0, CONFIG.HORIZONTAL_END],
+    [0, -totalTravel],
+    { clamp: true }
+  )
+
+  // Reveal progress: 0 to 1 during CIRCLE_START -> CIRCLE_END
+  const revealProgress = useTransform(
+    scrollYProgress,
+    [CONFIG.CIRCLE_START, CONFIG.CIRCLE_END],
+    [0, 1],
+    { clamp: true }
+  )
+
+  // Update circle mask and DOM attributes directly without React re-renders
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const workLayer = workLayerRef.current
+    const revealSlot = revealSlotRef.current
+    if (!workLayer) return
+
+    // 1. Circle hole mask & visibility on work layer
+    if (latest < CONFIG.CIRCLE_START) {
+      workLayer.style.maskImage = 'none'
+      workLayer.style.webkitMaskImage = 'none'
+      workLayer.style.visibility = 'visible'
+      workLayer.removeAttribute('inert')
+    } else if (latest >= CONFIG.CIRCLE_END) {
+      workLayer.style.visibility = 'hidden'
+      workLayer.setAttribute('inert', '')
+    } else {
+      workLayer.style.visibility = 'visible'
+      workLayer.removeAttribute('inert')
+
+      // Progress within circle phase [0, 1]
+      const p = (latest - CONFIG.CIRCLE_START) / (CONFIG.CIRCLE_END - CONFIG.CIRCLE_START)
+      // Gentle ease-in-out
+      const eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p
+      const r = Math.max(0, Math.min(100, eased * 100))
+
+      const maskValue = `radial-gradient(circle farthest-corner at 50% 50%, transparent ${r}%, #000 calc(${r}% + 0.5%))`
+      workLayer.style.maskImage = maskValue
+      workLayer.style.webkitMaskImage = maskValue
+    }
+
+    // 2. Inert on reveal slot until circle is ~40% open (0.6 + 0.4 * 0.4 = 0.76)
+    if (revealSlot) {
+      if (latest < 0.76) {
+        revealSlot.setAttribute('inert', '')
+      } else {
+        revealSlot.removeAttribute('inert')
+      }
+    }
+  })
+
+  // Sanitize studio anchor: ensure anchor at bottom 100svh is the unique #studio target
+  useEffect(() => {
+    if (revealSlotRef.current) {
+      const innerStudio = revealSlotRef.current.querySelector('#studio')
+      if (innerStudio && innerStudio !== studioAnchorRef.current) {
+        innerStudio.removeAttribute('id')
+      }
+    }
+  }, [reveal])
+
+  // Keyboard navigation: center focused off-screen item in stage
+  const handleItemFocus = useCallback(
+    (itemEl: HTMLElement) => {
+      if (!trackRef.current || !wrapperRef.current) return
+
+      const stageWidth = window.innerWidth
+      const trackRect = trackRef.current.getBoundingClientRect()
+      const itemRect = itemEl.getBoundingClientRect()
+
+      // If already comfortably in view, do not jump
+      if (itemRect.left >= 48 && itemRect.right <= stageWidth - 48) {
+        return
+      }
+
+      // Compute item center relative to track
+      const itemOffsetInTrack = itemRect.left - trackRect.left
+      const itemCenterInTrack = itemOffsetInTrack + itemRect.width / 2
+
+      // We want track position targetX such that: itemCenterInTrack + targetX = stageWidth / 2
+      const targetX = stageWidth / 2 - itemCenterInTrack
+      const clampedProgress = Math.max(
+        0,
+        Math.min(CONFIG.HORIZONTAL_END, (-targetX / totalTravel) * CONFIG.HORIZONTAL_END)
+      )
+
+      // Calculate corresponding vertical scroll position
+      const wrapperRect = wrapperRef.current.getBoundingClientRect()
+      const wrapperTop = wrapperRect.top + window.scrollY
+      const scrollTravel = totalTravel / CONFIG.HORIZONTAL_END
+      const targetScrollY = wrapperTop + clampedProgress * scrollTravel
+
+      if (lenis) {
+        lenis.scrollTo(targetScrollY)
+      } else {
+        window.scrollTo({ top: targetScrollY, behavior: 'smooth' })
+      }
+    },
+    [totalTravel, lenis]
+  )
+
+  // Reduced motion branch: unpinned horizontal scroll strip, no circle mask
+  if (prefersReduced) {
+    return (
+      <>
+        <section
+          id="work"
+          aria-labelledby="work-heading"
+          className="selected-work-wrapper"
+          style={{
+            paddingTop: '6rem',
+            paddingBottom: '6rem',
+          }}
+        >
+          <h2 id="work-heading" className="sr-only">
+            Selected Work
+          </h2>
+          <div id="selected-work" style={{ position: 'absolute', top: 0, height: 0 }} aria-hidden="true" />
+
+          <div className="selected-work-reduced-strip">
+            {projects.map((project, index) => (
+              <div key={project.slug} className="selected-work-reduced-item">
+                <ProjectItem project={project} index={index} />
+              </div>
+            ))}
+          </div>
+
+          <div className="giant-words-container" aria-hidden="true" style={{ position: 'relative', marginTop: '3rem' }}>
+            <span className="giant-word">NOVA</span>
+            <span className="giant-word">ATELIER</span>
+          </div>
+        </section>
+
+        {/* Next section follows normally */}
+        {reveal}
+      </>
+    )
+  }
+
+  // Wrapper height: 100svh + total travel / HORIZONTAL_END
+  const wrapperHeight = `calc(100svh + ${totalTravel / CONFIG.HORIZONTAL_END}px)`
 
   return (
     <section
-      id="selected-work"
-      aria-labelledby="work-headline"
-      style={{ backgroundColor: 'var(--color-bg)', overflow: 'hidden' }}
+      id="work"
+      ref={wrapperRef}
+      aria-labelledby="work-heading"
+      className="selected-work-wrapper"
+      style={{ height: wrapperHeight }}
     >
-      {/* Section header */}
-      <div
-        style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '7rem 3.5% 3rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          flexWrap: 'wrap',
-          gap: '2rem',
-        }}
-      >
-        <div>
-          <Reveal>
-            <span className="label" style={{ marginBottom: '1rem', display: 'block' }}>
-              {selectedWorkContent.eyebrow}
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2
-              id="work-headline"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 500,
-                fontSize: 'clamp(2rem, 3.8vw, 3.5rem)',
-                lineHeight: 1.1,
-                color: 'var(--color-ink)',
-                maxWidth: '20ch',
-              }}
-            >
-              {selectedWorkContent.headline}
-            </h2>
-          </Reveal>
-        </div>
-        <Reveal delay={0.15}>
-          <MagneticButton>
-            <Button variant="ghost" as="a" href="#contact">
-              {selectedWorkContent.cta}
-            </Button>
-          </MagneticButton>
-        </Reveal>
-      </div>
+      {/* Visually hidden heading for accessibility */}
+      <h2 id="work-heading" className="sr-only">
+        Selected Work
+      </h2>
 
-      {/* Horizontal project strip */}
-      <div ref={containerRef} style={{ paddingBottom: '6rem' }}>
-        <motion.div
-          ref={trackRef}
-          data-lenis-prevent
-          style={{ x, display: 'flex', gap: '2px', paddingLeft: '3.5%', willChange: 'transform' }}
+      {/* Backwards compatibility anchor for #selected-work */}
+      <div id="selected-work" style={{ position: 'absolute', top: 0, height: 0 }} aria-hidden="true" />
+
+      {/* Sticky Stage: 100svh pinned container */}
+      <div className="selected-work-stage">
+        {/* 1. Reveal Slot (Layer beneath work layer) */}
+        <div
+          ref={revealSlotRef}
+          className="selected-work-reveal-slot"
+          inert
         >
-          {projects.map((project, i) => (
-            <article
-              key={project.id}
-              aria-label={`${project.title} — ${project.category}`}
-              style={{
-                flexShrink: 0,
-                width: 'clamp(280px, 30vw, 440px)',
-                paddingRight: '2rem',
-              }}
-            >
-              {/* Image */}
-              <div
-                style={{
-                  aspectRatio: '4/5',
-                  borderRadius: '6px',
-                  overflow: 'hidden',
-                  background: `linear-gradient(135deg, hsl(${30 + i * 18}, 8%, 80%) 0%, hsl(${30 + i * 18}, 6%, 73%) 100%)`,
-                  marginBottom: '1.25rem',
-                  position: 'relative',
-                }}
-              >
-                <img
-                  src={project.imageSrc}
-                  alt={project.alt}
-                  width={440}
-                  height={550}
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  onError={(e) => (e.currentTarget.style.display = 'none')}
-                />
-                <div
-                  aria-hidden="true"
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    pointerEvents: 'none',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: '0.5625rem',
-                      letterSpacing: '0.35em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(14,14,14,0.25)',
-                    }}
-                  >
-                    {project.category}
-                  </span>
-                </div>
-              </div>
+          <RevealProgressContext.Provider value={{ revealProgress }}>
+            <div style={{ width: '100%', height: '100%' }}>
+              {reveal}
+            </div>
+          </RevealProgressContext.Provider>
+        </div>
 
-              {/* Meta */}
-              <div>
-                <span className="label" style={{ color: 'var(--color-ink-soft)', marginBottom: '0.25rem', display: 'block' }}>
-                  {project.category} · {project.year}
-                </span>
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 500,
-                    fontSize: 'clamp(1.25rem, 1.8vw, 1.75rem)',
-                    color: 'var(--color-ink)',
-                    marginBottom: '0.5rem',
-                    lineHeight: 1.15,
-                  }}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: '0.8125rem',
-                    color: 'var(--color-ink-soft)',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {project.subtitle}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: '0.625rem',
-                    letterSpacing: '0.25em',
-                    textTransform: 'uppercase',
-                    color: 'var(--color-ink-soft)',
-                    marginTop: '0.75rem',
-                    opacity: 0.6,
-                  }}
-                >
-                  {project.location}
-                </p>
-              </div>
-            </article>
-          ))}
-        </motion.div>
+        {/* 2. Work Layer (Upper layer with circular hole mask) */}
+        <div
+          ref={workLayerRef}
+          className="selected-work-layer"
+        >
+          {/* Horizontal track vertically centered on 52% axis */}
+          <div className="selected-work-track-container">
+            <motion.div
+              ref={trackRef}
+              className="selected-work-track"
+              style={{ x }}
+            >
+              {projects.map((project, index) => (
+                <ProjectItem
+                  key={project.slug}
+                  project={project}
+                  index={index}
+                  onItemFocus={handleItemFocus}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Giant condensed words staying fixed at bottom of stage */}
+          <div className="giant-words-container" aria-hidden="true">
+            <span className="giant-word">NOVA</span>
+            <span className="giant-word">ATELIER</span>
+          </div>
+        </div>
       </div>
+
+      {/* Zero-height anchor for #studio at exactly 100svh above bottom */}
+      <div
+        id="studio"
+        ref={studioAnchorRef}
+        style={{
+          position: 'absolute',
+          bottom: '100svh',
+          left: 0,
+          width: '1px',
+          height: 0,
+          pointerEvents: 'none',
+          visibility: 'hidden',
+        }}
+        aria-hidden="true"
+      />
     </section>
   )
 }

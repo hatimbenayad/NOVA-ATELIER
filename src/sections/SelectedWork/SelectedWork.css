@@ -1,0 +1,238 @@
+/* ─── Selected Work Styles ─────────────────────────────────────────────────── */
+
+.selected-work-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-bg);
+}
+
+.selected-work-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  width: 100%;
+  overflow: clip;
+}
+
+/* ─── Reveal Slot (Layer beneath work) ─────────────────────────────────────── */
+
+.selected-work-reveal-slot {
+  position: absolute;
+  inset: 0;
+  height: 100svh;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.selected-work-reveal-slot > div {
+  width: 100%;
+  height: 100%;
+}
+
+.selected-work-reveal-slot section {
+  height: 100% !important;
+  min-height: 100svh !important;
+  max-height: 100svh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ─── Work Layer (Pinned stage on top) ────────────────────────────────────── */
+
+.selected-work-layer {
+  position: absolute;
+  inset: 0;
+  height: 100svh;
+  width: 100%;
+  z-index: 2;
+  background-color: var(--color-bg);
+  overflow: clip;
+  will-change: mask-image, -webkit-mask-image;
+}
+
+.selected-work-track-container {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.selected-work-track {
+  display: flex;
+  align-items: center;
+  padding-left: 2.8vw;
+  padding-right: 6vw;
+  gap: clamp(24px, 3.1vw, 64px);
+  will-change: transform;
+}
+
+/* ─── Project Item / Card ──────────────────────────────────────────────────── */
+
+.project-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  width: clamp(240px, 28vw, 560px);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .project-card {
+    width: 74vw;
+  }
+}
+
+.project-card:focus-visible {
+  outline: 2px solid #0E0E0E;
+  outline-offset: 4px;
+}
+
+.project-card.is-portrait {
+  max-height: calc(100svh - 240px);
+  max-width: calc((100svh - 240px) * 8 / 11);
+}
+
+.project-image-box {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #E2E0DC;
+  border-radius: 0;
+}
+
+.project-card.is-landscape .project-image-box {
+  aspect-ratio: 3 / 2;
+}
+
+.project-card.is-portrait .project-image-box {
+  aspect-ratio: 8 / 11;
+  max-height: calc(100svh - 240px);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.project-card:hover .project-image,
+.project-card:focus-visible .project-image {
+  transform: scale(1.03);
+}
+
+/* ─── Hover Info Row ───────────────────────────────────────────────────────── */
+
+.project-info-row {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #0E0E0E;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1), transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.project-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-info-row,
+.project-card:focus-visible .project-info-row {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card:hover .project-arrow,
+.project-card:focus-visible .project-arrow {
+  transform: translateX(4px);
+}
+
+@media (hover: none), (max-width: 767px) {
+  .project-info-row {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* ─── Giant Condensed Words ───────────────────────────────────────────────── */
+
+.giant-words-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3svh;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.4vw;
+  pointer-events: none;
+  z-index: 10;
+  user-select: none;
+}
+
+.giant-word {
+  font-family: var(--font-display-condensed);
+  font-size: clamp(3rem, 6vw, 9rem);
+  line-height: 0.8;
+  letter-spacing: 0;
+  color: #0E0E0E;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .giant-word {
+    font-size: 14vw;
+  }
+}
+
+/* ─── Reduced Motion Strip ─────────────────────────────────────────────────── */
+
+.selected-work-reduced-strip {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  align-items: center;
+  padding-left: 3.5%;
+  padding-right: 6vw;
+  gap: clamp(24px, 3.1vw, 64px);
+  padding-bottom: 4rem;
+  scrollbar-width: thin;
+}
+
+.selected-work-reduced-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-info-row {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
