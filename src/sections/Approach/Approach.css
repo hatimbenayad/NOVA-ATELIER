@@ -1,0 +1,311 @@
+/* ─── Approach Section Styles ────────────────────────────────────────────── */
+
+.approach-wrapper {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-100svh * var(--handoff-screens, 1));
+  width: 100%;
+  /* Height is set dynamically in style prop: calc(100svh * (1 + PIN_SCREENS_APPROACH)) */
+}
+
+.approach-stage {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: clip;
+  background-color: transparent;
+  color: var(--ink-on-dome, #F1EEE7);
+  user-select: none;
+
+  /* Dome geometry tokens */
+  --dome-r: max(45vw, 52svh);
+  --dome-crown: calc(var(--nav-h, 58px) + 3svh);
+}
+
+/* ─── Screen Reader Accessibility ──────────────────────────────────────────── */
+.approach-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Background Photo Layer ───────────────────────────────────────────────── */
+.approach-photos-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: clip;
+}
+
+.approach-photo-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+}
+
+.approach-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+}
+
+/* ─── The Half Dome ────────────────────────────────────────────────────────── */
+.approach-dome {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: var(--dome-crown);
+  width: calc(var(--dome-r) * 2);
+  height: calc(var(--dome-r) * 2);
+  border-radius: 50%;
+  background-color: var(--surface-dome, #171614);
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ─── Rotating Rim SVG ─────────────────────────────────────────────────────── */
+.approach-rim-svg {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--dome-crown) + var(--dome-r));
+  margin-left: calc(var(--dome-r) * -1);
+  margin-top: calc(var(--dome-r) * -1);
+  width: calc(var(--dome-r) * 2);
+  height: calc(var(--dome-r) * 2);
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+  will-change: transform;
+}
+
+.approach-rim-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 92px;
+  letter-spacing: 0.05em;
+  fill: var(--ink-on-dome, #F1EEE7);
+  transition: opacity 0.2s ease-out;
+}
+
+/* ─── Center Details Inside Dome ───────────────────────────────────────────── */
+.approach-center-container {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Top row at 46svh */
+.approach-row-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 46svh;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.approach-row-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 56px);
+  white-space: nowrap;
+}
+
+.approach-side-label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-on-dome, #F1EEE7);
+  line-height: 1;
+}
+
+.approach-numeral-mask {
+  display: inline-block;
+  overflow: clip;
+  padding: 0.12em 0;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+.approach-numeral-text {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(4rem, 8vw, 8.5rem);
+  line-height: 1;
+  color: var(--ink-on-dome, #F1EEE7);
+  will-change: transform;
+}
+
+/* Vertical Hairline from 58svh to 80svh (22svh height) */
+.approach-hairline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 58svh;
+  width: 1px;
+  height: 22svh;
+  background-color: var(--dome-line, rgba(241, 238, 231, 0.35));
+  pointer-events: none;
+}
+
+.approach-hairline-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background-color: var(--ink-on-dome, #F1EEE7);
+  transform-origin: top center;
+}
+
+/* Caption at 84svh */
+.approach-caption-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 84svh;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.approach-caption-item {
+  position: absolute;
+  text-align: center;
+  max-width: 26ch;
+  width: 90%;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: clamp(11px, 0.85vw, 14px);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+  color: var(--ink-on-dome, #F1EEE7);
+  margin: 0;
+}
+
+/* ─── Mobile View (< 768px) ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .approach-stage {
+    --dome-r: 52svh;
+    --dome-crown: calc(var(--nav-h, 58px) + 2svh);
+  }
+
+  .approach-row-wrapper {
+    top: 44svh;
+  }
+
+  .approach-numeral-text {
+    font-size: clamp(3.4rem, 22vw, 6rem);
+  }
+
+  .approach-caption-item {
+    font-size: 11px;
+    max-width: 24ch;
+  }
+}
+
+/* ─── Reduced Motion Static Section ────────────────────────────────────────── */
+.approach-reduced-motion {
+  background-color: var(--surface-dome, #171614);
+  color: var(--ink-on-dome, #F1EEE7);
+  padding: 6rem 5% 8rem;
+  margin-top: 0 !important;
+}
+
+.approach-reduced-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--ink-on-dome, #F1EEE7);
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.approach-reduced-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.approach-reduced-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.approach-reduced-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+.approach-reduced-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--ink-on-dome, #F1EEE7);
+  margin-bottom: 0.5rem;
+}
+
+.approach-reduced-title {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: var(--ink-on-dome, #F1EEE7);
+}
+
+.approach-reduced-desc {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(241, 238, 231, 0.75);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .approach-reduced-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .approach-reduced-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}

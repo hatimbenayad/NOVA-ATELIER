@@ -14,16 +14,25 @@ interface LogoProps {
   style?: CSSProperties
 }
 
+export interface LogoEmblemProps {
+  color?: string
+  size?: number | string
+  className?: string
+  style?: CSSProperties
+}
+
 /** Geometric architectural emblem — abstract "N" built from thin strokes */
-function LogoEmblem({ color = 'currentColor' }: { color?: string }) {
+export function LogoEmblem({ color = 'currentColor', size = 48, className = '', style }: LogoEmblemProps) {
   return (
     <svg
-      width="48"
-      height="48"
+      width={size}
+      height={size}
       viewBox="0 0 48 48"
       fill="none"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={style}
     >
       {/* Outer rectangle frame */}
       <rect x="8" y="6" width="32" height="36" rx="1" stroke={color} strokeWidth="1.5" />
@@ -40,6 +49,8 @@ function LogoEmblem({ color = 'currentColor' }: { color?: string }) {
     </svg>
   )
 }
+
+export const LogoMark = LogoEmblem
 
 export default function Logo({ compact = false, color, className = '', style }: LogoProps) {
   const strokeColor = color ?? 'var(--color-ink)'

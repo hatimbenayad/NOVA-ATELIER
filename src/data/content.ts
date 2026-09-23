@@ -70,7 +70,19 @@ export interface NumbersContent {
 export interface ApproachStep {
   number: string
   title: string
-  body: string
+  description: string
+  image: ImageAsset
+}
+
+export interface ApproachContent {
+  intro: {
+    ringTitle: string
+    caption: string
+    leftLabel: string
+    rightLabel: string
+    image: ImageAsset
+  }
+  steps: ApproachStep[]
 }
 
 export interface Service {
@@ -312,33 +324,68 @@ export const stats: NumbersStat[] = numbersContent.stats
 
 // ─── Approach ─────────────────────────────────────────────────────────────────
 
-export const approachContent = {
-  eyebrow: 'Our Approach',
-  headline: 'A process built on listening.',
+export const approachContent: ApproachContent = {
+  intro: {
+    ringTitle: 'Our approach',
+    caption: 'Four steps, from the first conversation to the final detail.',
+    leftLabel: 'Barcelona',
+    rightLabel: 'Madrid',
+    image: {
+      src: '/images/projects/casa-lumen-featured.jpg',
+      alt: 'NOVA Atelier architectural practice in Barcelona and Madrid',
+      width: 1400,
+      height: 950,
+    },
+  },
+  steps: [
+    {
+      number: '01',
+      title: 'Understand',
+      description: 'We study the site, people and context.',
+      image: {
+        src: '/images/projects/hotel-sirena.jpg',
+        alt: 'Studying site conditions, light, and architectural context',
+        width: 1400,
+        height: 933,
+      },
+    },
+    {
+      number: '02',
+      title: 'Define',
+      description: 'We establish the concept, materials and spatial language.',
+      image: {
+        src: '/images/projects/residences-montserrat.jpg',
+        alt: 'Defining spatial language and material palette',
+        width: 1200,
+        height: 800,
+      },
+    },
+    {
+      number: '03',
+      title: 'Create',
+      description: 'Architecture becomes drawings, materials and details.',
+      image: {
+        src: '/images/projects/torre-blanca.jpg',
+        alt: 'Drafting architectural drawings and crafting bespoke details',
+        width: 1400,
+        height: 933,
+      },
+    },
+    {
+      number: '04',
+      title: 'Refine',
+      description: 'Every element is considered until the space feels complete.',
+      image: {
+        src: '/images/projects/finca-alba.jpg',
+        alt: 'Refining elements on site until complete harmony is achieved',
+        width: 1400,
+        height: 933,
+      },
+    },
+  ],
 }
 
-export const approachSteps: ApproachStep[] = [
-  {
-    number: '01',
-    title: 'Discover',
-    body: 'Every engagement begins with immersive research: site visits, climate analysis, material culture studies, and long conversations with the people who will inhabit the space.',
-  },
-  {
-    number: '02',
-    title: 'Conceive',
-    body: 'From research emerges a singular concept — not an aesthetic, but a spatial logic that governs every decision, from the orientation of a window to the texture of a floor.',
-  },
-  {
-    number: '03',
-    title: 'Develop',
-    body: 'Concept becomes detail. Our architects and interior designers work in parallel, ensuring that architecture and interiors share one vocabulary rather than two competing ones.',
-  },
-  {
-    number: '04',
-    title: 'Deliver',
-    body: 'We remain on site from groundbreaking through the final placement of furniture. Craft requires proximity. The finished space is our only measure of success.',
-  },
-]
+export const approachSteps: ApproachStep[] = approachContent.steps
 
 // ─── Featured Project ─────────────────────────────────────────────────────────
 

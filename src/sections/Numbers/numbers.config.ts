@@ -8,6 +8,8 @@ export const NUMBERS_TIMELINE = {
   // 0.94 to 1.0: hold the finished layout, then the pin releases
 }
 
+export const HANDOFF_SCREENS = 1
+
 export const PROGRESS_SPRING = { stiffness: 140, damping: 30, mass: 0.5 }
 
 /**

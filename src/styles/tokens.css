@@ -8,6 +8,9 @@
   --color-ink: #0E0E0E;
   --ink: #0E0E0E;
   --surface-stone: #DDDDD8;
+  --surface-dome: #171614;
+  --ink-on-dome: #F1EEE7;
+  --dome-line: rgba(241, 238, 231, 0.35);
   --color-ink-soft: #4A4A4A;
   --color-hairline: rgba(14, 14, 14, 0.6);
   --color-white: #FFFFFF;

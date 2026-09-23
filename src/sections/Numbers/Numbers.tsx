@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, useReducedMotion } from 'framer-motion'
 import { numbersContent } from '../../data/content'
-import { NUMBERS_TIMELINE, PROGRESS_SPRING, easeOutCubic } from './numbers.config'
+import { NUMBERS_TIMELINE, HANDOFF_SCREENS, PROGRESS_SPRING, easeOutCubic } from './numbers.config'
 import NumbersRow from './NumbersRow'
 import NumbersImage from './NumbersImage'
 import './Numbers.css'
@@ -10,14 +10,35 @@ export default function Numbers() {
   const wrapperRef = useRef<HTMLElement>(null)
   const shouldReduceMotion = useReducedMotion()
 
+  const pinScreens = NUMBERS_TIMELINE.PIN_SCREENS
+
   // Native Lenis scroll progress (0 to 1 over the pinned wrapper)
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: rawProgress } = useScroll({
     target: wrapperRef,
     offset: ['start start', 'end end'],
   })
 
+  // numbersProgress = clamp(p * (PIN_SCREENS + 1) / PIN_SCREENS, 0, 1) -> feeds existing timeline
+  const numbersRaw = useTransform(rawProgress, (p) =>
+    Math.min(Math.max((p * (pinScreens + 1)) / pinScreens, 0), 1)
+  )
+
   // Light spring smoothing to avoid jarring steps while preserving instant response
-  const progress = useSpring(scrollYProgress, PROGRESS_SPRING)
+  const progress = useSpring(numbersRaw, PROGRESS_SPRING)
+
+  // exit = clamp((p - PIN_SCREENS / (PIN_SCREENS + 1)) * (PIN_SCREENS + 1), 0, 1) -> drives exit zoom
+  const exitProgress = useTransform(rawProgress, (p) =>
+    Math.min(Math.max((p - pinScreens / (pinScreens + 1)) * (pinScreens + 1), 0), 1)
+  )
+
+  // Zoom: scale 1 -> 1.08 (easeInOut on exit), transform-origin 50% 42%
+  const stageScale = useTransform(exitProgress, (t) => {
+    const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    return 1 + eased * 0.08
+  })
+
+  // Veil: opacity 0 -> 0.3 on exit
+  const veilOpacity = useTransform(exitProgress, [0, 1], [0, 0.3])
 
   // ─── Intro Animations (0.00 to 0.09) ───────────────────────────────────────
   // Tag fades in and moves slightly up
@@ -56,34 +77,40 @@ export default function Numbers() {
     { ease: easeOutCubic }
   )
 
-  // Pin height: 1 + PIN_SCREENS
-  const pinScreens = NUMBERS_TIMELINE.PIN_SCREENS
-
   return (
-    <>
-      <section
-        id="numbers"
-        ref={wrapperRef}
-        aria-labelledby="numbers-heading"
-        className="numbers-wrapper"
+    <section
+      id="numbers"
+      ref={wrapperRef}
+      aria-labelledby="numbers-heading"
+      className="numbers-wrapper"
+      style={{
+        height: shouldReduceMotion
+          ? 'auto'
+          : `calc(100svh * (1 + ${pinScreens} + ${HANDOFF_SCREENS}))`,
+      }}
+    >
+      {/* Visually hidden heading for screen readers */}
+      <h2 id="numbers-heading" className="numbers-sr-only">
+        NOVA Atelier in numbers
+      </h2>
+
+      {/* Pinned Sticky Stage */}
+      <div
+        className="numbers-stage"
         style={{
-          height: shouldReduceMotion
-            ? 'auto'
-            : `calc(100svh * (1 + ${pinScreens}))`,
+          position: shouldReduceMotion ? 'relative' : 'sticky',
+          minHeight: shouldReduceMotion ? '100svh' : undefined,
+          height: shouldReduceMotion ? 'auto' : '100svh',
         }}
       >
-        {/* Visually hidden heading for screen readers */}
-        <h2 id="numbers-heading" className="numbers-sr-only">
-          NOVA Atelier in numbers
-        </h2>
-
-        {/* Pinned Sticky Stage */}
-        <div
-          className="numbers-stage"
+        {/* Zoom wrapper: scale 1 -> 1.08 with transformOrigin 50% 42% on exit */}
+        <motion.div
           style={{
-            position: shouldReduceMotion ? 'relative' : 'sticky',
-            minHeight: shouldReduceMotion ? '100svh' : undefined,
-            height: shouldReduceMotion ? 'auto' : '100svh',
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            scale: shouldReduceMotion ? 1 : stageScale,
+            transformOrigin: '50% 42%',
           }}
         >
           {/* Top Left Tag: "● BY THE NUMBERS" */}
@@ -120,9 +147,9 @@ export default function Numbers() {
             ))}
           </div>
 
-          {/* Left Half: Editorial Statement in Row 5 (Desktop) */}
+          {/* Editorial Statement (Left Half Row 5 on Desktop; bottom on mobile) */}
           <motion.blockquote
-            className="numbers-statement numbers-statement-desktop"
+            className="numbers-statement"
             style={{
               opacity: shouldReduceMotion ? 1 : quoteOpacity,
               y: shouldReduceMotion ? 0 : quoteY,
@@ -142,22 +169,21 @@ export default function Numbers() {
               />
             ))}
           </ul>
-        </div>
-      </section>
 
-      {/* Mobile Editorial Statement (Normal block rendered right after pinned stage) */}
-      <motion.aside
-        aria-label="Editorial statement"
-        className="numbers-statement-mobile-container"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <blockquote className="numbers-statement-mobile">
-          “{numbersContent.quote}”
-        </blockquote>
-      </motion.aside>
-    </>
+          {/* Dark veil layer above content (no filters) */}
+          <motion.div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: '#000000',
+              opacity: shouldReduceMotion ? 0 : veilOpacity,
+              pointerEvents: 'none',
+              zIndex: 20,
+            }}
+          />
+        </motion.div>
+      </div>
+    </section>
   )
 }

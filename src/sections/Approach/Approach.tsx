@@ -1,102 +1,123 @@
-import Reveal from '../../components/ui/Reveal'
-import { approachContent, approachSteps } from '../../data/content'
+import { useRef } from 'react'
+import { useScroll, useSpring, useTransform, useReducedMotion } from 'framer-motion'
+import { approachContent } from '../../data/content'
+import {
+  PIN_SCREENS_APPROACH,
+  PROGRESS_SPRING,
+  progressToActive,
+} from './approach.config'
+import ApproachPhotos from './ApproachPhotos'
+import ApproachDome from './ApproachDome'
+import ApproachRim from './ApproachRim'
+import ApproachCenter from './ApproachCenter'
+import './Approach.css'
 
 export default function Approach() {
+  const wrapperRef = useRef<HTMLElement>(null)
+  const shouldReduceMotion = useReducedMotion()
+
+  // Entry scroll progress: 0 when wrapper bottom reaches screen bottom, 1 when wrapper top reaches screen top
+  const { scrollYProgress: enter } = useScroll({
+    target: wrapperRef,
+    offset: ['start end', 'start start'],
+  })
+
+  // Pinned scroll progress: 0 when top reaches top of viewport, 1 when pinned tail completes
+  const { scrollYProgress: rawProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start start', 'end end'],
+  })
+
+  // Light spring smoothing on pinned progress
+  const smoothProgress = useSpring(rawProgress, PROGRESS_SPRING)
+
+  // Active motion value [0..4] (0 = Intro, 1..4 = Steps) with ease-in-out moves and holds
+  const active = useTransform(smoothProgress, (p) => progressToActive(p))
+
+  // Combine all 5 images: intro + 4 steps
+  const allImages = [
+    approachContent.intro.image,
+    ...approachContent.steps.map((s) => s.image),
+  ]
+
+  // Reduced motion: render clean static editorial grid
+  if (shouldReduceMotion) {
+    return (
+      <section
+        id="approach"
+        aria-labelledby="approach-heading"
+        className="approach-reduced-motion"
+      >
+        <h2 id="approach-heading" className="approach-reduced-heading">
+          {approachContent.intro.ringTitle}
+        </h2>
+
+        <div className="approach-reduced-grid">
+          {approachContent.steps.map((step) => (
+            <article key={step.number} className="approach-reduced-card">
+              <img
+                src={step.image.src}
+                alt={step.image.alt}
+                width={step.image.width}
+                height={step.image.height}
+                loading="lazy"
+                decoding="async"
+                className="approach-reduced-img"
+              />
+              <p className="approach-reduced-num">{step.number}</p>
+              <h3 className="approach-reduced-title">{step.title}</h3>
+              <p className="approach-reduced-desc">{step.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section
       id="approach"
-      aria-labelledby="approach-headline"
-      style={{ backgroundColor: 'var(--color-bg)' }}
-      className="section-padding"
+      ref={wrapperRef}
+      aria-labelledby="approach-heading"
+      className="approach-wrapper"
+      style={{
+        height: `calc(100svh * (1 + ${PIN_SCREENS_APPROACH}))`,
+      }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3.5%' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '5rem' }}>
-          <Reveal>
-            <span className="label" style={{ marginBottom: '1rem', display: 'block' }}>
-              {approachContent.eyebrow}
-            </span>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h2
-              id="approach-headline"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 500,
-                fontSize: 'clamp(1.875rem, 3vw, 3rem)',
-                lineHeight: 1.1,
-                color: 'var(--color-ink)',
-                maxWidth: '20ch',
-              }}
-            >
-              {approachContent.headline}
-            </h2>
-          </Reveal>
-        </div>
+      {/* Visually hidden heading for screen readers */}
+      <h2 id="approach-heading" className="approach-sr-only">
+        {approachContent.intro.ringTitle}
+      </h2>
 
-        {/* Steps */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '3rem',
-          }}
-        >
-          {approachSteps.map((step, i) => (
-            <Reveal key={step.number} delay={i * 0.1}>
-              <article aria-label={`Step ${step.number}: ${step.title}`}>
-                {/* Step number */}
-                <p
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 400,
-                    fontSize: '4rem',
-                    lineHeight: 1,
-                    color: 'var(--color-ink)',
-                    opacity: 0.08,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  {step.number}
-                </p>
+      {/* Visually hidden step list for screen readers */}
+      <ol className="approach-sr-only">
+        {approachContent.steps.map((step) => (
+          <li key={step.number}>
+            <h3>
+              {step.number} {step.title}
+            </h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
 
-                {/* Hairline */}
-                <div
-                  aria-hidden="true"
-                  style={{
-                    width: '28px',
-                    height: '1px',
-                    backgroundColor: 'var(--color-hairline)',
-                    marginBottom: '1.5rem',
-                  }}
-                />
+      {/* Visual Sticky Stage (Aria-hidden) */}
+      <div aria-hidden="true" className="approach-stage">
+        {/* Full-bleed background photos (below dome, above transparent stage) */}
+        <ApproachPhotos images={allImages} active={active} enter={enter} />
 
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 500,
-                    fontSize: '1.5rem',
-                    color: 'var(--color-ink)',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {step.title}
-                </h3>
+        {/* The Half Dome */}
+        <ApproachDome />
 
-                <p
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: '0.875rem',
-                    lineHeight: 1.8,
-                    color: 'var(--color-ink-soft)',
-                  }}
-                >
-                  {step.body}
-                </p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        {/* Rotating Rim SVG with curved text */}
+        <ApproachRim content={approachContent} active={active} enter={enter} />
+
+        {/* Center details inside dome: row at 46svh, hairline at 58-80svh, caption at 84svh */}
+        <ApproachCenter
+          content={approachContent}
+          active={active}
+          progress={smoothProgress}
+        />
       </div>
     </section>
   )
