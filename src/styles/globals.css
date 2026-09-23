@@ -1,0 +1,155 @@
+@import './tokens.css';
+@import 'tailwindcss';
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Lenis Smooth Scroll ─────────────────────────────────────────────────── */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Typography Utilities ────────────────────────────────────────────────── */
+
+.font-serif {
+  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+}
+
+.font-sans {
+  font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ─── Hairline ────────────────────────────────────────────────────────────── */
+
+.hairline {
+  display: block;
+  height: 1px;
+  background-color: var(--color-hairline);
+}
+
+/* ─── Label Text ──────────────────────────────────────────────────────────── */
+
+.label {
+  font-family: 'Jost', sans-serif;
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  line-height: 1.9;
+}
+
+.label-sm {
+  font-family: 'Jost', sans-serif;
+  font-size: var(--text-sublabel);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* ─── Skip Link ───────────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ─── Custom Cursor ───────────────────────────────────────────────────────── */
+
+@media (pointer: fine) {
+  body.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* ─── Focus Visible ───────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Section spacing ─────────────────────────────────────────────────────── */
+
+.section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+}
+
+/* ─── Reduced Motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
