@@ -31,9 +31,40 @@ export interface Project {
   href: string
 }
 
+export interface ImageAsset {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
+
+export interface StudioContent {
+  statement: string
+  intro: string
+  paragraphs: [string, string]
+  cta: {
+    label: string
+    href: string
+  }
+  studioImage: ImageAsset
+  slides: ImageAsset[]
+}
+
 export interface Stat {
   value: string
   label: string
+}
+
+export interface NumbersStat {
+  value: string
+  label: string
+}
+
+export interface NumbersContent {
+  tag: string
+  stats: NumbersStat[]
+  images: ImageAsset[]
+  quote: string
 }
 
 export interface ApproachStep {
@@ -184,34 +215,100 @@ export const projects: Project[] = [
 
 // ─── Studio Introduction ──────────────────────────────────────────────────────
 
-export const studioContent = {
-  eyebrow: 'The Studio',
-  headline: 'We build for the way\npeople truly live.',
-  body: [
-    'Founded in Barcelona in 2012, NOVA Atelier is a multidisciplinary studio that architects space, curates interiors, and composes landscape as a unified discipline.',
-    'We believe that great architecture is not an object placed in the world, but a conversation between a building, its landscape, and the people who inhabit it. Every project begins with a rigorous study of context — climate, material culture, the specific light of a place.',
-    'Our team of fourteen architects, interior designers, and landscape specialists works across Spain and Southern Europe, taking on a selective number of commissions each year to maintain the standard our clients expect.',
+export const studioContent: StudioContent = {
+  statement:
+    'We design spaces that feel inevitable, shaped by light, material and the way people live.',
+  intro:
+    'Founded in Barcelona in 2012, NOVA Atelier works across architecture, interiors and the selection of materials. Every project begins with the site, the light and the daily rituals of the people who will live there.',
+  paragraphs: [
+    'Our work brings together considered spatial planning, natural stone, timber and lime, and precise detailing to create spaces that feel grounded, warm and enduring.',
+    'From first sketch to final handover, we work closely with clients, engineers and local craftspeople, so every decision supports the atmosphere, function and longevity of the home.',
   ],
-  cta: 'Meet the Studio',
-  imageSrc: '/images/studio/studio-interior.jpg',
-  imageAlt: 'Interior of the NOVA Atelier studio showing drafting tables, material samples, and architectural models',
+  cta: {
+    label: 'Discover the studio',
+    href: '#studio',
+  },
+  studioImage: {
+    src: '/images/studio/studio-interior.jpg',
+    alt: 'NOVA Atelier studio interior showing drafting tables and material samples',
+    width: 600,
+    height: 400,
+  },
+  slides: [
+    {
+      src: '/images/projects/casa-lumen-featured.jpg',
+      alt: 'Casa Lumen — modern villa with clean geometric lines and floor-to-ceiling glass',
+      width: 1400,
+      height: 950,
+    },
+    {
+      src: '/images/hero/card-2.jpg',
+      alt: 'Curated architectural interior featuring bespoke woodwork and warm ambient light',
+      width: 1200,
+      height: 800,
+    },
+    {
+      src: '/images/projects/finca-alba.jpg',
+      alt: 'Finca Alba — estate landscape integrated with native stone terraces',
+      width: 1400,
+      height: 933,
+    },
+    {
+      src: '/images/projects/torre-blanca.jpg',
+      alt: 'Torre Blanca — minimal penthouse residence in natural earth tones',
+      width: 1400,
+      height: 933,
+    },
+  ],
 }
 
-// ─── Numbers / Philosophy ─────────────────────────────────────────────────────
+// ─── Numbers / Stats ──────────────────────────────────────────────────────────
 
-export const numbersContent = {
-  eyebrow: 'By the Numbers',
-  philosophy: '"We do not design buildings. We design the way light enters a room."',
-  philosophyAttribution: '— Founder, NOVA Atelier',
+export const numbersContent: NumbersContent = {
+  tag: 'By the numbers',
+  stats: [
+    { value: '12+',  label: 'Years' },
+    { value: '48',   label: 'Projects' },
+    { value: '2012', label: 'Since' },
+    { value: '9',    label: 'Cities' },
+    { value: '17',   label: 'Awards' },
+  ],
+  images: [
+    {
+      src: '/images/projects/hotel-sirena.jpg',
+      alt: 'Hotel Sirena boutique hospitality project in Mallorca',
+      width: 800,
+      height: 580,
+    },
+    {
+      src: '/images/projects/residences-montserrat.jpg',
+      alt: 'Residences Montserrat urban living architecture in Barcelona',
+      width: 800,
+      height: 580,
+    },
+    {
+      src: '/images/projects/casa-lumen.jpg',
+      alt: 'Casa Lumen contemporary coastal residence in Costa Brava',
+      width: 800,
+      height: 580,
+    },
+    {
+      src: '/images/projects/finca-alba.jpg',
+      alt: 'Finca Alba rural landscape and architectural estate in Seville',
+      width: 800,
+      height: 580,
+    },
+    {
+      src: '/images/projects/torre-blanca.jpg',
+      alt: 'Torre Blanca penthouse interior and terrace in Madrid',
+      width: 800,
+      height: 580,
+    },
+  ],
+  quote: "Good architecture doesn't compete with its surroundings. It gives them meaning.",
 }
 
-export const stats: Stat[] = [
-  { value: '12+',  label: 'Years of Practice' },
-  { value: '78',   label: 'Projects Completed' },
-  { value: '4',    label: 'Countries' },
-  { value: '14',   label: 'Specialists' },
-  { value: '3×',   label: 'AR Award Winner' },
-]
+export const stats: NumbersStat[] = numbersContent.stats
 
 // ─── Approach ─────────────────────────────────────────────────────────────────
 

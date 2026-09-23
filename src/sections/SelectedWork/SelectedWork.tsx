@@ -9,20 +9,22 @@ import './SelectedWork.css'
 
 // ─── Scroll & Animation Config ────────────────────────────────────────────────
 const CONFIG = {
-  HORIZONTAL_END: 0.8, // progress at which the track has finished moving
-  CIRCLE_START: 0.6,   // the circle starts opening while the images are still moving left
-  CIRCLE_END: 1.0,     // the circle covers the entire screen
+  HORIZONTAL_END: 0.8, // progress of main scroll at which track finishes moving
+  CIRCLE_START: 0.6,   // circle starts opening while images are still moving left
+  CIRCLE_END: 1.0,     // circle covers entire screen
 }
 
 export interface SelectedWorkProps {
   reveal?: ReactNode
+  tailScreens?: number
 }
 
 /**
  * Selected Work — pinned full-screen stage with right-to-left horizontal glide,
- * fixed condensed "NOVA" / "ATELIER" typography, and circular portal reveal slot.
+ * fixed condensed "NOVA" / "ATELIER" typography, circular portal reveal slot,
+ * and extended tail pinning for the revealed section.
  */
-export default function SelectedWork({ reveal }: SelectedWorkProps) {
+export default function SelectedWork({ reveal, tailScreens = 0 }: SelectedWorkProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const workLayerRef = useRef<HTMLDivElement>(null)
@@ -34,36 +36,42 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
 
   // Track total horizontal travel T
   const [totalTravel, setTotalTravel] = useState<number>(2400)
+  const [windowHeight, setWindowHeight] = useState<number>(() =>
+    typeof window !== 'undefined' ? window.innerHeight : 900
+  )
 
-  // Measure track scroll width accurately
-  const measureTrack = useCallback(() => {
+  // Measure track scroll width and window height accurately
+  const measureGeometry = useCallback(() => {
     if (trackRef.current) {
       const scrollW = trackRef.current.scrollWidth
       if (scrollW > 0) {
         setTotalTravel(scrollW)
       }
     }
+    if (typeof window !== 'undefined') {
+      setWindowHeight(window.innerHeight)
+    }
   }, [])
 
   useEffect(() => {
-    measureTrack()
+    measureGeometry()
 
     const ro = new ResizeObserver(() => {
-      measureTrack()
+      measureGeometry()
     })
 
     if (trackRef.current) {
       ro.observe(trackRef.current)
     }
 
-    window.addEventListener('resize', measureTrack)
-    document.fonts?.ready?.then(measureTrack)
+    window.addEventListener('resize', measureGeometry)
+    document.fonts?.ready?.then(measureGeometry)
 
     return () => {
       ro.disconnect()
-      window.removeEventListener('resize', measureTrack)
+      window.removeEventListener('resize', measureGeometry)
     }
-  }, [measureTrack])
+  }, [measureGeometry])
 
   // Scroll timeline linked to wrapper
   const { scrollYProgress } = useScroll({
@@ -71,24 +79,30 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
     offset: ['start start', 'end end'],
   })
 
-  // Horizontal motion: x goes linearly from 0 to -T during 0 -> HORIZONTAL_END
-  const x = useTransform(
-    scrollYProgress,
-    [0, CONFIG.HORIZONTAL_END],
-    [0, -totalTravel],
-    { clamp: true }
-  )
+  // Geometry calculations: main scroll for track & circle + tail screens for revealed studio
+  const effectiveTailScreens = prefersReduced ? 0 : tailScreens
+  const mainScroll = totalTravel / CONFIG.HORIZONTAL_END
+  const tailScroll = effectiveTailScreens * windowHeight
+  const totalScrollDistance = mainScroll + tailScroll
+  const mainFraction = totalScrollDistance > 0 ? mainScroll / totalScrollDistance : 1
 
-  // Reveal progress: 0 to 1 during CIRCLE_START -> CIRCLE_END
+  // Convert raw scroll progress into mainProgress (0-1 over mainScroll) and tail (0-1 over tailScroll)
+  const mainProgress = useTransform(scrollYProgress, [0, mainFraction], [0, 1], { clamp: true })
+  const tail = useTransform(scrollYProgress, [mainFraction, 1], [0, 1], { clamp: true })
+
+  // Horizontal motion: x goes linearly from 0 to -T during mainProgress 0 -> HORIZONTAL_END
+  const x = useTransform(mainProgress, [0, CONFIG.HORIZONTAL_END], [0, -totalTravel], { clamp: true })
+
+  // Reveal progress: 0 to 1 during mainProgress CIRCLE_START -> CIRCLE_END
   const revealProgress = useTransform(
-    scrollYProgress,
+    mainProgress,
     [CONFIG.CIRCLE_START, CONFIG.CIRCLE_END],
     [0, 1],
     { clamp: true }
   )
 
   // Update circle mask and DOM attributes directly without React re-renders
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  useMotionValueEvent(mainProgress, 'change', (latest) => {
     const workLayer = workLayerRef.current
     const revealSlot = revealSlotRef.current
     if (!workLayer) return
@@ -127,7 +141,7 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
     }
   })
 
-  // Sanitize studio anchor: ensure anchor at bottom 100svh is the unique #studio target
+  // Sanitize studio anchor: ensure anchor at (top: mainScroll) is the unique #studio target
   useEffect(() => {
     if (revealSlotRef.current) {
       const innerStudio = revealSlotRef.current.querySelector('#studio')
@@ -157,7 +171,7 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
 
       // We want track position targetX such that: itemCenterInTrack + targetX = stageWidth / 2
       const targetX = stageWidth / 2 - itemCenterInTrack
-      const clampedProgress = Math.max(
+      const clampedMainProgress = Math.max(
         0,
         Math.min(CONFIG.HORIZONTAL_END, (-targetX / totalTravel) * CONFIG.HORIZONTAL_END)
       )
@@ -165,8 +179,8 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
       // Calculate corresponding vertical scroll position
       const wrapperRect = wrapperRef.current.getBoundingClientRect()
       const wrapperTop = wrapperRect.top + window.scrollY
-      const scrollTravel = totalTravel / CONFIG.HORIZONTAL_END
-      const targetScrollY = wrapperTop + clampedProgress * scrollTravel
+      const currentMainScroll = totalTravel / CONFIG.HORIZONTAL_END
+      const targetScrollY = wrapperTop + clampedMainProgress * currentMainScroll
 
       if (lenis) {
         lenis.scrollTo(targetScrollY)
@@ -177,7 +191,7 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
     [totalTravel, lenis]
   )
 
-  // Reduced motion branch: unpinned horizontal scroll strip, no circle mask
+  // Reduced motion branch: unpinned horizontal scroll strip, no circle mask, no tail
   if (prefersReduced) {
     return (
       <>
@@ -215,8 +229,8 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
     )
   }
 
-  // Wrapper height: 100svh + total travel / HORIZONTAL_END
-  const wrapperHeight = `calc(100svh + ${totalTravel / CONFIG.HORIZONTAL_END}px)`
+  // Wrapper height: 100svh + totalScrollDistance
+  const wrapperHeight = `calc(100svh + ${totalScrollDistance}px)`
 
   return (
     <section
@@ -242,7 +256,7 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
           className="selected-work-reveal-slot"
           inert
         >
-          <RevealProgressContext.Provider value={{ revealProgress }}>
+          <RevealProgressContext.Provider value={{ reveal: revealProgress, tail }}>
             <div style={{ width: '100%', height: '100%' }}>
               {reveal}
             </div>
@@ -280,13 +294,13 @@ export default function SelectedWork({ reveal }: SelectedWorkProps) {
         </div>
       </div>
 
-      {/* Zero-height anchor for #studio at exactly 100svh above bottom */}
+      {/* Zero-height anchor for #studio at exactly wrapper top + mainScroll (tail = 0) */}
       <div
         id="studio"
         ref={studioAnchorRef}
         style={{
           position: 'absolute',
-          bottom: '100svh',
+          top: `${mainScroll}px`,
           left: 0,
           width: '1px',
           height: 0,

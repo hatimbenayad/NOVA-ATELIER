@@ -6,10 +6,15 @@
   --color-bg-light: #F6F6F5;
   --color-bg-edge: #E6E6E5;
   --color-ink: #0E0E0E;
+  --ink: #0E0E0E;
+  --surface-stone: #DDDDD8;
   --color-ink-soft: #4A4A4A;
   --color-hairline: rgba(14, 14, 14, 0.6);
   --color-white: #FFFFFF;
   --color-accent: #2A2A2A;
+
+  /* Layout */
+  --nav-h: 64px;
 
   /* Typography — fonts */
   --font-display-condensed: 'Bebas Neue', 'Oswald', Impact, sans-serif;

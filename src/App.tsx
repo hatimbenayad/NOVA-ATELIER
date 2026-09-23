@@ -4,7 +4,7 @@ import Cursor from './components/ui/Cursor'
 import SmoothScroll from './components/ui/SmoothScroll'
 import Hero from './sections/Hero/Hero'
 import SelectedWork from './sections/SelectedWork/SelectedWork'
-import StudioIntro from './sections/StudioIntro/StudioIntro'
+import Studio from './sections/StudioIntro/Studio'
 import Numbers from './sections/Numbers/Numbers'
 import Approach from './sections/Approach/Approach'
 import FeaturedProject from './sections/FeaturedProject/FeaturedProject'
@@ -26,8 +26,8 @@ export default function App() {
         {/* Hero section — full viewport, editorial layout */}
         <Hero />
 
-        {/* Selected Work — horizontal glide stage with StudioIntro reveal */}
-        <SelectedWork reveal={<StudioIntro />} />
+        {/* Selected Work — horizontal glide stage with Studio reveal & extended tail */}
+        <SelectedWork tailScreens={2.4} reveal={<Studio />} />
 
         {/* Numbers & Philosophy — dark section */}
         <Numbers />

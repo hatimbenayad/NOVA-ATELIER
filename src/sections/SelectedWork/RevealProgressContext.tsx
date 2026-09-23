@@ -1,16 +1,34 @@
 import { createContext, useContext } from 'react'
-import type { MotionValue } from 'framer-motion'
+import { useMotionValue, type MotionValue } from 'framer-motion'
 
 export interface RevealProgressContextValue {
   /**
    * Progress of the circle mask opening, from 0 (closed) to 1 (fully open).
-   * Driven by Framer Motion's scroll-linked MotionValue.
    */
-  revealProgress: MotionValue<number>
+  reveal: MotionValue<number>
+  /**
+   * Progress of the post-circle pinned distance (the tail), from 0 to 1.
+   */
+  tail: MotionValue<number>
 }
 
 export const RevealProgressContext = createContext<RevealProgressContextValue | null>(null)
 
-export function useRevealProgress(): RevealProgressContextValue | null {
-  return useContext(RevealProgressContext)
+/**
+ * useRevealProgress — exposes { reveal, tail } as Framer Motion MotionValues (0 to 1).
+ * When used without a provider (reduced motion / standalone), both default to 1.
+ */
+export function useRevealProgress(): RevealProgressContextValue {
+  const context = useContext(RevealProgressContext)
+  const defaultReveal = useMotionValue(1)
+  const defaultTail = useMotionValue(1)
+
+  if (!context) {
+    return {
+      reveal: defaultReveal,
+      tail: defaultTail,
+    }
+  }
+
+  return context
 }
