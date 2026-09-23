@@ -45,8 +45,8 @@ export default function Approach() {
     return (
       <section
         id="approach"
-        aria-labelledby="approach-heading"
-        className="approach-reduced-motion"
+        aria-labelledby="approach-heading-reduced"
+        className="approach-reduced-motion surface-paper"
       >
         <h2 id="approach-heading" className="approach-reduced-heading">
           {approachContent.intro.ringTitle}

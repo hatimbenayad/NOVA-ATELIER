@@ -1,0 +1,1864 @@
+[
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 8,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "backgroundColor: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 9,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "color: 'var(--color-bg)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 24,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.15)",
+    "rawLine": "borderBottom: '1px solid rgba(238,238,238,0.15)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 40,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.6)",
+    "rawLine": "color: 'rgba(238,238,238,0.6)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 44,
+    "category": "hex",
+    "match": "#EEEEEE",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = '#EEEEEE')}"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 45,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.6)",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.6)')}"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 56,
+    "category": "hex",
+    "match": "#EEEEEE",
+    "rawLine": "<Logo color=\"#EEEEEE\" />"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 62,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.4)",
+    "rawLine": "color: 'rgba(238,238,238,0.4)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 86,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.6)",
+    "rawLine": "color: 'rgba(238,238,238,0.6)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 90,
+    "category": "hex",
+    "match": "#EEEEEE",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = '#EEEEEE')}"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 91,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.6)",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.6)')}"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 116,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.35)",
+    "rawLine": "color: 'rgba(238,238,238,0.35)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 131,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.35)",
+    "rawLine": "color: 'rgba(238,238,238,0.35)',"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 135,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.7)",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.7)')}"
+  },
+  {
+    "file": "src/components/layout/Footer.tsx",
+    "line": 136,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.35)",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.35)')}"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 86,
+    "category": "rgb/rgba",
+    "match": "rgba(238, 238, 238, 0.88)",
+    "rawLine": "backgroundColor: 'rgba(238, 238, 238, 0.88)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 87,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "borderBottom: '1px solid var(--color-hairline)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 110,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 138,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 142,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 143,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 176,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 187,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 198,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 225,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "backgroundColor: 'var(--color-bg)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 246,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/layout/Navbar.tsx",
+    "line": 269,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 19,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "bg-[var(--color-ink)] text-[var(--color-bg)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 19,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "bg-[var(--color-ink)] text-[var(--color-bg)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 21,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "border border-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 23,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "hover:bg-transparent hover:text-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 24,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 29,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "bg-transparent text-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 31,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "border border-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 33,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "hover:bg-[var(--color-ink)] hover:text-[var(--color-bg)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 33,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "hover:bg-[var(--color-ink)] hover:text-[var(--color-bg)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 34,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 38,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "bg-transparent text-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 41,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "after:h-px after:w-0 after:bg-[var(--color-ink)]"
+  },
+  {
+    "file": "src/components/ui/Button.tsx",
+    "line": 44,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3"
+  },
+  {
+    "file": "src/components/ui/Cursor.tsx",
+    "line": 91,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "border: '1.5px solid var(--color-ink)',"
+  },
+  {
+    "file": "src/components/ui/Cursor.tsx",
+    "line": 92,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "backgroundColor: isHovering ? 'transparent' : 'var(--color-ink)',"
+  },
+  {
+    "file": "src/components/ui/Logo.tsx",
+    "line": 11,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "/** Override color (defaults to currentColor / var(--color-ink)) */"
+  },
+  {
+    "file": "src/components/ui/Logo.tsx",
+    "line": 56,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "const strokeColor = color ?? 'var(--color-ink)'"
+  },
+  {
+    "file": "src/index.css",
+    "line": 2,
+    "category": "hex",
+    "match": "#6b6375",
+    "rawLine": "--text: #6b6375;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 3,
+    "category": "hex",
+    "match": "#08060d",
+    "rawLine": "--text-h: #08060d;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 4,
+    "category": "hex",
+    "match": "#fff",
+    "rawLine": "--bg: #fff;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 5,
+    "category": "hex",
+    "match": "#e5e4e7",
+    "rawLine": "--border: #e5e4e7;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 6,
+    "category": "hex",
+    "match": "#f4f3ec",
+    "rawLine": "--code-bg: #f4f3ec;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 7,
+    "category": "hex",
+    "match": "#aa3bff",
+    "rawLine": "--accent: #aa3bff;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 8,
+    "category": "rgb/rgba",
+    "match": "rgba(170, 59, 255, 0.1)",
+    "rawLine": "--accent-bg: rgba(170, 59, 255, 0.1);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 9,
+    "category": "rgb/rgba",
+    "match": "rgba(170, 59, 255, 0.5)",
+    "rawLine": "--accent-border: rgba(170, 59, 255, 0.5);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 10,
+    "category": "rgb/rgba",
+    "match": "rgba(244, 243, 236, 0.5)",
+    "rawLine": "--social-bg: rgba(244, 243, 236, 0.5);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 12,
+    "category": "rgb/rgba",
+    "match": "rgba(0, 0, 0, 0.1)",
+    "rawLine": "rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 12,
+    "category": "rgb/rgba",
+    "match": "rgba(0, 0, 0, 0.05)",
+    "rawLine": "rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 35,
+    "category": "hex",
+    "match": "#9ca3af",
+    "rawLine": "--text: #9ca3af;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 36,
+    "category": "hex",
+    "match": "#f3f4f6",
+    "rawLine": "--text-h: #f3f4f6;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 37,
+    "category": "hex",
+    "match": "#16171d",
+    "rawLine": "--bg: #16171d;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 38,
+    "category": "hex",
+    "match": "#2e303a",
+    "rawLine": "--border: #2e303a;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 39,
+    "category": "hex",
+    "match": "#1f2028",
+    "rawLine": "--code-bg: #1f2028;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 40,
+    "category": "hex",
+    "match": "#c084fc",
+    "rawLine": "--accent: #c084fc;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 41,
+    "category": "rgb/rgba",
+    "match": "rgba(192, 132, 252, 0.15)",
+    "rawLine": "--accent-bg: rgba(192, 132, 252, 0.15);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 42,
+    "category": "rgb/rgba",
+    "match": "rgba(192, 132, 252, 0.5)",
+    "rawLine": "--accent-border: rgba(192, 132, 252, 0.5);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 43,
+    "category": "rgb/rgba",
+    "match": "rgba(47, 48, 58, 0.5)",
+    "rawLine": "--social-bg: rgba(47, 48, 58, 0.5);"
+  },
+  {
+    "file": "src/index.css",
+    "line": 45,
+    "category": "rgb/rgba",
+    "match": "rgba(0, 0, 0, 0.4)",
+    "rawLine": "rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;"
+  },
+  {
+    "file": "src/index.css",
+    "line": 45,
+    "category": "rgb/rgba",
+    "match": "rgba(0, 0, 0, 0.25)",
+    "rawLine": "rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 19,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 19,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 23,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "--dome-r: max(45vw, 52svh);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 24,
+    "category": "old tokens",
+    "match": "--dome-crown",
+    "rawLine": "--dome-crown: calc(var(--nav-h, 58px) + 3svh);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 72,
+    "category": "old tokens",
+    "match": "--dome-crown",
+    "rawLine": "top: var(--dome-crown);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 74,
+    "category": "old tokens",
+    "match": "--dome-w",
+    "rawLine": "--dome-w: max(calc(var(--dome-r) * 2), 104vw);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 74,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "--dome-w: max(calc(var(--dome-r) * 2), 104vw);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 75,
+    "category": "old tokens",
+    "match": "--dome-w",
+    "rawLine": "width: var(--dome-w);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 77,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "height: calc(var(--dome-r) + 100svh);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 79,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "border-radius: 50% 50% 0 0 / var(--dome-r) var(--dome-r) 0 0;"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 79,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "border-radius: 50% 50% 0 0 / var(--dome-r) var(--dome-r) 0 0;"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 80,
+    "category": "hex",
+    "match": "#171614",
+    "rawLine": "background-color: var(--surface-dome, #171614);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 80,
+    "category": "old tokens",
+    "match": "--surface-dome",
+    "rawLine": "background-color: var(--surface-dome, #171614);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 90,
+    "category": "old tokens",
+    "match": "--dome-crown",
+    "rawLine": "top: calc(var(--dome-crown) + var(--dome-r));"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 90,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "top: calc(var(--dome-crown) + var(--dome-r));"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 91,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "margin-left: calc(var(--dome-r) * -1);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 92,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "margin-top: calc(var(--dome-r) * -1);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 93,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "width: calc(var(--dome-r) * 2);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 94,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "height: calc(var(--dome-r) * 2);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 107,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "fill: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 107,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "fill: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 147,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 147,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 165,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 165,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 177,
+    "category": "rgb/rgba",
+    "match": "rgba(241, 238, 231, 0.35)",
+    "rawLine": "background-color: var(--dome-line, rgba(241, 238, 231, 0.35));"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 177,
+    "category": "old tokens",
+    "match": "--dome-line",
+    "rawLine": "background-color: var(--dome-line, rgba(241, 238, 231, 0.35));"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 185,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "background-color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 185,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "background-color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 213,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 213,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 220,
+    "category": "old tokens",
+    "match": "--dome-r",
+    "rawLine": "--dome-r: 52svh;"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 221,
+    "category": "old tokens",
+    "match": "--dome-crown",
+    "rawLine": "--dome-crown: calc(var(--nav-h, 58px) + 2svh);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 240,
+    "category": "hex",
+    "match": "#171614",
+    "rawLine": "background-color: var(--surface-dome, #171614);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 240,
+    "category": "old tokens",
+    "match": "--surface-dome",
+    "rawLine": "background-color: var(--surface-dome, #171614);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 241,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 241,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 250,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 250,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 281,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 281,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 292,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 292,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "color: var(--ink-on-dome, #F1EEE7);"
+  },
+  {
+    "file": "src/sections/Approach/Approach.css",
+    "line": 300,
+    "category": "rgb/rgba",
+    "match": "rgba(241, 238, 231, 0.75)",
+    "rawLine": "color: rgba(241, 238, 231, 0.75);"
+  },
+  {
+    "file": "src/sections/Approach/ApproachCenter.tsx",
+    "line": 49,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "<motion.span style={{ y, display: 'inline-flex', color: 'var(--ink-on-dome)' }}>"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 11,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "style={{ backgroundColor: 'var(--color-bg)' }}"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 20,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "borderTop: '1px solid var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 21,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "borderBottom: '1px solid var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 39,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 54,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 88,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 101,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 111,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 123,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 127,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 128,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 139,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 143,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}"
+  },
+  {
+    "file": "src/sections/Contact/Contact.tsx",
+    "line": 144,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 11,
+    "category": "hex",
+    "match": "#E6E6E5",
+    "rawLine": "backgroundColor: 'var(--color-bg-edge, #E6E6E5)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 11,
+    "category": "old tokens",
+    "match": "--color-bg-edge",
+    "rawLine": "backgroundColor: 'var(--color-bg-edge, #E6E6E5)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 39,
+    "category": "hex",
+    "match": "#CEC9C1",
+    "rawLine": "background: 'linear-gradient(135deg, #CEC9C1 0%, #BAB5AE 100%)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 39,
+    "category": "hex",
+    "match": "#BAB5AE",
+    "rawLine": "background: 'linear-gradient(135deg, #CEC9C1 0%, #BAB5AE 100%)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 70,
+    "category": "rgb/rgba",
+    "match": "rgba(14,14,14,0.2)",
+    "rawLine": "color: 'rgba(14,14,14,0.2)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 82,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "<span className=\"label\" style={{ color: 'var(--color-ink-soft)', marginBottom: '0.5rem', display: 'block' }}>"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 94,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 108,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 124,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 141,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "borderTop: '1px solid var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 151,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/FeaturedProject/FeaturedProject.tsx",
+    "line": 164,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 67,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 166,
+    "category": "hex",
+    "match": "#F6F6F5",
+    "rawLine": "background: 'radial-gradient(ellipse 80% 60% at 50% 20%, #F6F6F5 0%, #EEEEEE 55%, #E6E6E5 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 166,
+    "category": "hex",
+    "match": "#EEEEEE",
+    "rawLine": "background: 'radial-gradient(ellipse 80% 60% at 50% 20%, #F6F6F5 0%, #EEEEEE 55%, #E6E6E5 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 166,
+    "category": "hex",
+    "match": "#E6E6E5",
+    "rawLine": "background: 'radial-gradient(ellipse 80% 60% at 50% 20%, #F6F6F5 0%, #EEEEEE 55%, #E6E6E5 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 211,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 250,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 281,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 302,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 400,
+    "category": "rgb/rgba",
+    "match": "rgba(0,0,0,0.12)",
+    "rawLine": "background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, transparent 70%)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 418,
+    "category": "rgb/rgba",
+    "match": "rgba(238,238,238,0.6)",
+    "rawLine": "background: 'linear-gradient(to top, rgba(238,238,238,0.6) 0%, transparent 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 458,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 468,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 483,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Hero/Hero.tsx",
+    "line": 496,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 15,
+    "category": "hex",
+    "match": "#D8D5CF",
+    "rawLine": "'linear-gradient(145deg, #D8D5CF 0%, #C9C5BE 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 15,
+    "category": "hex",
+    "match": "#C9C5BE",
+    "rawLine": "'linear-gradient(145deg, #D8D5CF 0%, #C9C5BE 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 16,
+    "category": "hex",
+    "match": "#D0CEC9",
+    "rawLine": "'linear-gradient(145deg, #D0CEC9 0%, #C3BFB8 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 16,
+    "category": "hex",
+    "match": "#C3BFB8",
+    "rawLine": "'linear-gradient(145deg, #D0CEC9 0%, #C3BFB8 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 17,
+    "category": "hex",
+    "match": "#CDD0CA",
+    "rawLine": "'linear-gradient(145deg, #CDD0CA 0%, #BFC2BA 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 17,
+    "category": "hex",
+    "match": "#BFC2BA",
+    "rawLine": "'linear-gradient(145deg, #CDD0CA 0%, #BFC2BA 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 18,
+    "category": "hex",
+    "match": "#CCCAC5",
+    "rawLine": "'linear-gradient(145deg, #CCCAC5 0%, #BEBCB7 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 18,
+    "category": "hex",
+    "match": "#BEBCB7",
+    "rawLine": "'linear-gradient(145deg, #CCCAC5 0%, #BEBCB7 100%)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 42,
+    "category": "rgb/rgba",
+    "match": "rgba(0,0,0,.22)",
+    "rawLine": "boxShadow: '0 8px 24px -8px rgba(0,0,0,.22)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 87,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 101,
+    "category": "rgb/rgba",
+    "match": "rgba(0,0,0,.32)",
+    "rawLine": "box-shadow: 0 18px 40px -12px rgba(0,0,0,.32);"
+  },
+  {
+    "file": "src/sections/Hero/HeroCard.tsx",
+    "line": 107,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 12,
+    "category": "hex",
+    "match": "#E6E6E5",
+    "rawLine": "backgroundColor: 'var(--color-bg-edge, #E6E6E5)',"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 12,
+    "category": "old tokens",
+    "match": "--color-bg-edge",
+    "rawLine": "backgroundColor: 'var(--color-bg-edge, #E6E6E5)',"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 42,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 80,
+    "category": "hsl/hsla",
+    "match": "hsl(${35 + i * 22}, 7%, 78%)",
+    "rawLine": "background: `linear-gradient(135deg, hsl(${35 + i * 22}, 7%, 78%) 0%, hsl(${35 + i * 22}, 5%, 70%) 100%)`,"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 80,
+    "category": "hsl/hsla",
+    "match": "hsl(${35 + i * 22}, 5%, 70%)",
+    "rawLine": "background: `linear-gradient(135deg, hsl(${35 + i * 22}, 7%, 78%) 0%, hsl(${35 + i * 22}, 5%, 70%) 100%)`,"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 107,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "style={{ color: 'var(--color-ink-soft)', fontSize: '0.5625rem', opacity: 0.6 }}"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 117,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "backgroundColor: 'var(--color-hairline)',"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 121,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "<span className=\"label\" style={{ color: 'var(--color-ink-soft)', fontSize: '0.5625rem' }}>"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 132,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: 'var(--color-ink)',"
+  },
+  {
+    "file": "src/sections/Journal/Journal.tsx",
+    "line": 144,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: 'var(--color-ink-soft)',"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 6,
+    "category": "hex",
+    "match": "#DDDDD8",
+    "rawLine": "background-color: var(--surface-stone, #DDDDD8);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 6,
+    "category": "old tokens",
+    "match": "--surface-stone",
+    "rawLine": "background-color: var(--surface-stone, #DDDDD8);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 17,
+    "category": "hex",
+    "match": "#DDDDD8",
+    "rawLine": "background-color: var(--surface-stone, #DDDDD8);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 17,
+    "category": "old tokens",
+    "match": "--surface-stone",
+    "rawLine": "background-color: var(--surface-stone, #DDDDD8);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 18,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 18,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 45,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "border: 1px solid var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 45,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "border: 1px solid var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 54,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 54,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 67,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.4)",
+    "rawLine": "background-color: rgba(14, 14, 14, 0.4);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 79,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.22)",
+    "rawLine": "background-color: rgba(14, 14, 14, 0.22);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 91,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.22)",
+    "rawLine": "background-color: rgba(14, 14, 14, 0.22);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 103,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "background-color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 103,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "background-color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 127,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.05)",
+    "rawLine": "background-color: rgba(14, 14, 14, 0.05);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 155,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 155,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 201,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 201,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "color: var(--ink, #0E0E0E);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.css",
+    "line": 212,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.85)",
+    "rawLine": "color: rgba(14, 14, 14, 0.85);"
+  },
+  {
+    "file": "src/sections/Numbers/Numbers.tsx",
+    "line": 179,
+    "category": "hex",
+    "match": "#000000",
+    "rawLine": "backgroundColor: '#000000',"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 6,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 26,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 42,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 85,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "outline: 2px solid #0E0E0E;"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 98,
+    "category": "hex",
+    "match": "#E2E0DC",
+    "rawLine": "background-color: #E2E0DC;"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 141,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: #0E0E0E;"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.css",
+    "line": 192,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "color: #0E0E0E;"
+  },
+  {
+    "file": "src/sections/SelectedWork/SelectedWork.tsx",
+    "line": 129,
+    "category": "hex",
+    "match": "#000",
+    "rawLine": "const maskValue = `radial-gradient(circle farthest-corner at 50% 50%, transparent ${r}%, #000 calc(${r}% + 0.5%))`"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 5,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 42,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 75,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.22)",
+    "rawLine": "background-color: rgba(14, 14, 14, 0.22);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 100,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "outline: 2px solid var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 110,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 117,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 150,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 174,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 184,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 206,
+    "category": "old tokens",
+    "match": "--color-bg-light",
+    "rawLine": "background-color: var(--color-bg-light);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 289,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "outline: 2px solid var(--color-ink);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 340,
+    "category": "old tokens",
+    "match": "--color-bg-light",
+    "rawLine": "background-color: var(--color-bg-light);"
+  },
+  {
+    "file": "src/sections/Services/Services.css",
+    "line": 358,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 12,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 13,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 52,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 81,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 105,
+    "category": "hex",
+    "match": "#D8D5CF",
+    "rawLine": "background-color: #D8D5CF;"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 129,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 141,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 143,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "border-bottom: 1px solid var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 174,
+    "category": "hex",
+    "match": "#E2E0DC",
+    "rawLine": "background-color: #E2E0DC;"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 227,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.25)",
+    "rawLine": "background: rgba(14, 14, 14, 0.25);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 235,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 246,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: var(--color-ink);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 247,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "color: var(--color-bg);"
+  },
+  {
+    "file": "src/sections/StudioIntro/Studio.css",
+    "line": 258,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "outline: 2px solid var(--color-ink);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 38,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "background-color: var(--color-bg);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 39,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "color: var(--color-ink);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 63,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "background-color: var(--color-hairline);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 74,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 84,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "color: var(--color-ink-soft);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 95,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "background: var(--color-ink);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 96,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "color: var(--color-bg);"
+  },
+  {
+    "file": "src/styles/globals.css",
+    "line": 118,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "outline: 2px solid var(--color-ink);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 5,
+    "category": "hex",
+    "match": "#EEEEEE",
+    "rawLine": "--color-bg: #EEEEEE;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 5,
+    "category": "old tokens",
+    "match": "--color-bg",
+    "rawLine": "--color-bg: #EEEEEE;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 6,
+    "category": "hex",
+    "match": "#F6F6F5",
+    "rawLine": "--color-bg-light: #F6F6F5;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 6,
+    "category": "old tokens",
+    "match": "--color-bg-light",
+    "rawLine": "--color-bg-light: #F6F6F5;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 7,
+    "category": "hex",
+    "match": "#E6E6E5",
+    "rawLine": "--color-bg-edge: #E6E6E5;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 7,
+    "category": "old tokens",
+    "match": "--color-bg-edge",
+    "rawLine": "--color-bg-edge: #E6E6E5;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 8,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "--color-ink: #0E0E0E;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 8,
+    "category": "old tokens",
+    "match": "--color-ink",
+    "rawLine": "--color-ink: #0E0E0E;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 9,
+    "category": "hex",
+    "match": "#0E0E0E",
+    "rawLine": "--ink: #0E0E0E;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 9,
+    "category": "old tokens",
+    "match": "--ink",
+    "rawLine": "--ink: #0E0E0E;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 10,
+    "category": "hex",
+    "match": "#DDDDD8",
+    "rawLine": "--surface-stone: #DDDDD8;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 10,
+    "category": "old tokens",
+    "match": "--surface-stone",
+    "rawLine": "--surface-stone: #DDDDD8;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 11,
+    "category": "hex",
+    "match": "#171614",
+    "rawLine": "--surface-dome: #171614;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 11,
+    "category": "old tokens",
+    "match": "--surface-dome",
+    "rawLine": "--surface-dome: #171614;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 12,
+    "category": "hex",
+    "match": "#F1EEE7",
+    "rawLine": "--ink-on-dome: #F1EEE7;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 12,
+    "category": "old tokens",
+    "match": "--ink-on-dome",
+    "rawLine": "--ink-on-dome: #F1EEE7;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 13,
+    "category": "rgb/rgba",
+    "match": "rgba(241, 238, 231, 0.35)",
+    "rawLine": "--dome-line: rgba(241, 238, 231, 0.35);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 13,
+    "category": "old tokens",
+    "match": "--dome-line",
+    "rawLine": "--dome-line: rgba(241, 238, 231, 0.35);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 14,
+    "category": "hex",
+    "match": "#4A4A4A",
+    "rawLine": "--color-ink-soft: #4A4A4A;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 14,
+    "category": "old tokens",
+    "match": "--color-ink-soft",
+    "rawLine": "--color-ink-soft: #4A4A4A;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 15,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.6)",
+    "rawLine": "--color-hairline: rgba(14, 14, 14, 0.6);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 15,
+    "category": "old tokens",
+    "match": "--color-hairline",
+    "rawLine": "--color-hairline: rgba(14, 14, 14, 0.6);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 16,
+    "category": "hex",
+    "match": "#FFFFFF",
+    "rawLine": "--color-white: #FFFFFF;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 16,
+    "category": "old tokens",
+    "match": "--color-white",
+    "rawLine": "--color-white: #FFFFFF;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 17,
+    "category": "hex",
+    "match": "#2A2A2A",
+    "rawLine": "--color-accent: #2A2A2A;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 17,
+    "category": "old tokens",
+    "match": "--color-accent",
+    "rawLine": "--color-accent: #2A2A2A;"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 54,
+    "category": "rgb/rgba",
+    "match": "rgba(0, 0, 0, 0.25)",
+    "rawLine": "--shadow-card: 0 10px 30px -12px rgba(0, 0, 0, 0.25);"
+  },
+  {
+    "file": "src/styles/tokens.css",
+    "line": 55,
+    "category": "rgb/rgba",
+    "match": "rgba(14, 14, 14, 0.08)",
+    "rawLine": "--shadow-nav: 0 1px 0 rgba(14, 14, 14, 0.08);"
+  }
+]

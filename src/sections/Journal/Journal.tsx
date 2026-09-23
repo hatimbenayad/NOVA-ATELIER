@@ -8,10 +8,7 @@ export default function Journal() {
     <section
       id="journal"
       aria-labelledby="journal-headline"
-      style={{
-        backgroundColor: 'var(--color-bg-edge, #E6E6E5)',
-      }}
-      className="section-padding"
+      className="section-padding surface-paper"
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3.5%' }}>
         {/* Header */}
@@ -27,7 +24,7 @@ export default function Journal() {
         >
           <div>
             <Reveal>
-              <span className="label" style={{ marginBottom: '1rem', display: 'block' }}>
+              <span className="label" style={{ marginBottom: '1rem', display: 'block', color: 'var(--fg-soft)' }}>
                 {journalContent.eyebrow}
               </span>
             </Reveal>
@@ -39,7 +36,7 @@ export default function Journal() {
                   fontWeight: 500,
                   fontSize: 'clamp(1.875rem, 3vw, 3rem)',
                   lineHeight: 1.1,
-                  color: 'var(--color-ink)',
+                  color: 'var(--fg)',
                 }}
               >
                 {journalContent.headline}
@@ -77,7 +74,7 @@ export default function Journal() {
                       aspectRatio: '3/2',
                       borderRadius: '6px',
                       overflow: 'hidden',
-                      background: `linear-gradient(135deg, hsl(${35 + i * 22}, 7%, 78%) 0%, hsl(${35 + i * 22}, 5%, 70%) 100%)`,
+                      background: 'var(--c-stone)',
                       marginBottom: '1.5rem',
                     }}
                   >
@@ -104,7 +101,7 @@ export default function Journal() {
                   <div style={{ display: 'flex', gap: '1rem', marginBottom: '0.75rem', alignItems: 'center' }}>
                     <span
                       className="label"
-                      style={{ color: 'var(--color-ink-soft)', fontSize: '0.5625rem', opacity: 0.6 }}
+                      style={{ color: 'var(--fg-soft)', fontSize: '0.5625rem' }}
                     >
                       {post.date}
                     </span>
@@ -114,11 +111,11 @@ export default function Journal() {
                         width: '4px',
                         height: '4px',
                         borderRadius: '50%',
-                        backgroundColor: 'var(--color-hairline)',
+                        backgroundColor: 'var(--line)',
                         flexShrink: 0,
                       }}
                     />
-                    <span className="label" style={{ color: 'var(--color-ink-soft)', fontSize: '0.5625rem' }}>
+                    <span className="label" style={{ color: 'var(--fg-soft)', fontSize: '0.5625rem' }}>
                       {post.category}
                     </span>
                   </div>
@@ -129,7 +126,7 @@ export default function Journal() {
                       fontWeight: 500,
                       fontSize: '1.375rem',
                       lineHeight: 1.25,
-                      color: 'var(--color-ink)',
+                      color: 'var(--fg)',
                       marginBottom: '0.75rem',
                     }}
                   >
@@ -141,7 +138,7 @@ export default function Journal() {
                       fontFamily: "'Jost', sans-serif",
                       fontSize: '0.8125rem',
                       lineHeight: 1.7,
-                      color: 'var(--color-ink-soft)',
+                      color: 'var(--fg-soft)',
                     }}
                   >
                     {post.excerpt}

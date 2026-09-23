@@ -65,7 +65,7 @@ export default function Services() {
       id="services"
       ref={sectionRef}
       aria-labelledby="services-heading"
-      className={`services-section ${hasEntered ? 'services-entered' : ''}`}
+      className={`services-section surface-ground ${hasEntered ? 'services-entered' : ''}`}
     >
       {/* Visually hidden heading for accessibility */}
       <h2 id="services-heading" className="sr-only">

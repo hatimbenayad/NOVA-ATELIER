@@ -8,8 +8,7 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-headline"
-      style={{ backgroundColor: 'var(--color-bg)' }}
-      className="section-padding"
+      className="section-padding surface-dark"
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3.5%' }}>
         {/* Hero-style CTA block */}
@@ -17,13 +16,13 @@ export default function Contact() {
           style={{
             textAlign: 'center',
             marginBottom: '6rem',
-            borderTop: '1px solid var(--color-hairline)',
-            borderBottom: '1px solid var(--color-hairline)',
+            borderTop: '1px solid var(--line)',
+            borderBottom: '1px solid var(--line)',
             padding: '6rem 0',
           }}
         >
           <Reveal>
-            <span className="label" style={{ marginBottom: '1.5rem', display: 'block' }}>
+            <span className="label" style={{ marginBottom: '1.5rem', display: 'block', color: 'var(--fg-soft)' }}>
               {contactContent.eyebrow}
             </span>
           </Reveal>
@@ -36,7 +35,7 @@ export default function Contact() {
                 fontWeight: 500,
                 fontSize: 'clamp(2rem, 4vw, 4rem)',
                 lineHeight: 1.05,
-                color: 'var(--color-ink)',
+                color: 'var(--fg)',
                 maxWidth: '22ch',
                 margin: '0 auto 1.5rem',
               }}
@@ -51,7 +50,7 @@ export default function Contact() {
                 fontFamily: "'Jost', sans-serif",
                 fontSize: '0.9375rem',
                 lineHeight: 1.8,
-                color: 'var(--color-ink-soft)',
+                color: 'var(--fg-soft)',
                 maxWidth: '42ch',
                 margin: '0 auto 3rem',
               }}
@@ -62,7 +61,7 @@ export default function Contact() {
 
           <Reveal delay={0.24}>
             <MagneticButton>
-              <Button variant="filled" as="a" href={`mailto:${contactContent.offices[0].email}`}>
+              <Button variant="ghost" as="a" href={`mailto:${contactContent.offices[0].email}`}>
                 {contactContent.cta}
               </Button>
             </MagneticButton>
@@ -85,7 +84,7 @@ export default function Contact() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 500,
                     fontSize: '1.5rem',
-                    color: 'var(--color-ink)',
+                    color: 'var(--fg)',
                     marginBottom: '1.25rem',
                   }}
                 >
@@ -98,7 +97,7 @@ export default function Contact() {
                   style={{
                     width: '28px',
                     height: '1px',
-                    backgroundColor: 'var(--color-hairline)',
+                    backgroundColor: 'var(--line-strong)',
                     marginBottom: '1.25rem',
                   }}
                 />
@@ -108,7 +107,7 @@ export default function Contact() {
                     fontFamily: "'Jost', sans-serif",
                     fontSize: '0.875rem',
                     lineHeight: 1.7,
-                    color: 'var(--color-ink-soft)',
+                    color: 'var(--fg-soft)',
                     marginBottom: '0.5rem',
                   }}
                 >
@@ -120,12 +119,12 @@ export default function Contact() {
                     style={{
                       fontFamily: "'Jost', sans-serif",
                       fontSize: '0.875rem',
-                      color: 'var(--color-ink-soft)',
+                      color: 'var(--fg-soft)',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg-soft)')}
                   >
                     {office.phone}
                   </a>
@@ -136,12 +135,12 @@ export default function Contact() {
                     style={{
                       fontFamily: "'Jost', sans-serif",
                       fontSize: '0.875rem',
-                      color: 'var(--color-ink-soft)',
+                      color: 'var(--fg-soft)',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg-soft)')}
                   >
                     {office.email}
                   </a>

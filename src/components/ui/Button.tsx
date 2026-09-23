@@ -16,32 +16,32 @@ const variantStyles: Record<Variant, string> = {
   filled: `
     inline-flex items-center gap-3
     px-8 py-3.5
-    bg-[var(--color-ink)] text-[var(--color-bg)]
+    bg-[var(--fg)] text-[var(--bg)]
     font-[Jost] font-[400] text-[0.6875rem] tracking-[0.3em] uppercase
-    border border-[var(--color-ink)]
+    border border-[var(--fg)]
     transition-all duration-300
-    hover:bg-transparent hover:text-[var(--color-ink)]
-    focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3
+    hover:bg-transparent hover:text-[var(--fg)]
+    focus-visible:outline-2 focus-visible:outline-[var(--fg)] focus-visible:outline-offset-3
   `,
   ghost: `
     inline-flex items-center gap-3
     px-8 py-3.5
-    bg-transparent text-[var(--color-ink)]
+    bg-transparent text-[var(--fg)]
     font-[Jost] font-[400] text-[0.6875rem] tracking-[0.3em] uppercase
-    border border-[var(--color-ink)]
+    border border-[var(--fg)]
     transition-all duration-300
-    hover:bg-[var(--color-ink)] hover:text-[var(--color-bg)]
-    focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3
+    hover:bg-[var(--fg)] hover:text-[var(--bg)]
+    focus-visible:outline-2 focus-visible:outline-[var(--fg)] focus-visible:outline-offset-3
   `,
   text: `
     inline-flex items-center gap-2
-    bg-transparent text-[var(--color-ink)]
+    bg-transparent text-[var(--fg)]
     font-[Jost] font-[400] text-[0.6875rem] tracking-[0.3em] uppercase
     relative after:absolute after:bottom-0 after:left-0
-    after:h-px after:w-0 after:bg-[var(--color-ink)]
-    after:transition-[width] after:duration-300
-    hover:after:w-full
-    focus-visible:outline-2 focus-visible:outline-[var(--color-ink)] focus-visible:outline-offset-3
+    after:h-px after:w-full after:bg-[var(--line-strong)]
+    after:transition-colors after:duration-300
+    hover:after:bg-[var(--fg)]
+    focus-visible:outline-2 focus-visible:outline-[var(--fg)] focus-visible:outline-offset-3
   `,
 }
 

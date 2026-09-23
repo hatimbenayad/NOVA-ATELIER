@@ -4,9 +4,9 @@ import { footerContent, navLinks } from '../../data/content'
 export default function Footer() {
   return (
     <footer
+      className="surface-dark"
       style={{
-        backgroundColor: 'var(--color-ink)',
-        color: 'var(--color-bg)',
+        borderTop: '1px solid var(--line)',
         padding: '5rem 2rem 3rem',
       }}
       aria-label="Site footer"
@@ -21,7 +21,7 @@ export default function Footer() {
             gap: '3rem',
             marginBottom: '4rem',
             paddingBottom: '4rem',
-            borderBottom: '1px solid rgba(238,238,238,0.15)',
+            borderBottom: '1px solid var(--line)',
           }}
         >
           {/* Left — nav */}
@@ -37,12 +37,12 @@ export default function Footer() {
                       fontWeight: 400,
                       letterSpacing: '0.3em',
                       textTransform: 'uppercase',
-                      color: 'rgba(238,238,238,0.6)',
+                      color: 'var(--fg-soft)',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#EEEEEE')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.6)')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg-soft)')}
                   >
                     {link.label}
                   </a>
@@ -53,13 +53,13 @@ export default function Footer() {
 
           {/* Center — logo */}
           <div style={{ textAlign: 'center' }}>
-            <Logo color="#EEEEEE" />
+            <Logo color="currentColor" />
             <p
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontSize: '0.6875rem',
                 letterSpacing: '0.25em',
-                color: 'rgba(238,238,238,0.4)',
+                color: 'var(--fg-soft)',
                 marginTop: '1rem',
                 textTransform: 'uppercase',
               }}
@@ -83,12 +83,12 @@ export default function Footer() {
                       fontWeight: 400,
                       letterSpacing: '0.3em',
                       textTransform: 'uppercase',
-                      color: 'rgba(238,238,238,0.6)',
+                      color: 'var(--fg-soft)',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#EEEEEE')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.6)')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg-soft)')}
                   >
                     {s.label}
                   </a>
@@ -113,7 +113,7 @@ export default function Footer() {
               fontFamily: "'Jost', sans-serif",
               fontSize: '0.6875rem',
               letterSpacing: '0.15em',
-              color: 'rgba(238,238,238,0.35)',
+              color: 'var(--fg-soft)',
             }}
           >
             {footerContent.copyright}
@@ -128,12 +128,12 @@ export default function Footer() {
                     fontSize: '0.625rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: 'rgba(238,238,238,0.35)',
+                    color: 'var(--fg-soft)',
                     textDecoration: 'none',
                     transition: 'color 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.7)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(238,238,238,0.35)')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg-soft)')}
                 >
                   {l.label}
                 </a>

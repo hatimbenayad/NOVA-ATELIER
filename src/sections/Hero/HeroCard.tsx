@@ -11,13 +11,6 @@ interface HeroCardProps {
  * motion.li in Hero.tsx provides the list item semantics).
  */
 export default function HeroCard({ card, index }: HeroCardProps) {
-  const placeholderGradients = [
-    'linear-gradient(145deg, #D8D5CF 0%, #C9C5BE 100%)',
-    'linear-gradient(145deg, #D0CEC9 0%, #C3BFB8 100%)',
-    'linear-gradient(145deg, #CDD0CA 0%, #BFC2BA 100%)',
-    'linear-gradient(145deg, #CCCAC5 0%, #BEBCB7 100%)',
-  ]
-
   const [imgLoaded, setImgLoaded] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -39,10 +32,10 @@ export default function HeroCard({ card, index }: HeroCardProps) {
           aspectRatio: '3/2',
           borderRadius: '12px',
           overflow: 'hidden',
-          boxShadow: '0 8px 24px -8px rgba(0,0,0,.22)',
+          boxShadow: 'var(--shadow-card)',
           transition: 'transform 500ms ease, box-shadow 500ms ease',
           flexShrink: 0,
-          background: placeholderGradients[index % 4],
+          background: 'var(--c-stone)',
           position: 'relative',
         }}
         className="hero-card-wrap"
@@ -84,7 +77,7 @@ export default function HeroCard({ card, index }: HeroCardProps) {
           fontWeight: 400,
           letterSpacing: '0.22em',
           textTransform: 'uppercase',
-          color: 'var(--color-ink-soft)',
+          color: 'var(--fg-soft)',
           lineHeight: 1.35,
           maxWidth: 'clamp(110px, 8.5vw, 138px)',
           textAlign: 'left',
@@ -98,13 +91,13 @@ export default function HeroCard({ card, index }: HeroCardProps) {
       <style>{`
         .hero-card-group:hover .hero-card-wrap {
           transform: translateY(-4px);
-          box-shadow: 0 18px 40px -12px rgba(0,0,0,.32);
+          box-shadow: var(--shadow-card);
         }
         .hero-card-group:hover .hero-card-img {
           transform: scale(1.05);
         }
         .hero-card-group:hover .hero-card-caption {
-          color: var(--color-ink);
+          color: var(--fg);
         }
       `}</style>
     </figure>

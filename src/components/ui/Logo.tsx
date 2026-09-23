@@ -8,7 +8,7 @@ import type { CSSProperties } from 'react'
 interface LogoProps {
   /** If true, renders emblem only (no wordmark). Used in navbar. */
   compact?: boolean
-  /** Override color (defaults to currentColor / var(--color-ink)) */
+  /** Override color (defaults to currentColor) */
   color?: string
   className?: string
   style?: CSSProperties
@@ -53,7 +53,7 @@ export function LogoEmblem({ color = 'currentColor', size = 48, className = '', 
 export const LogoMark = LogoEmblem
 
 export default function Logo({ compact = false, color, className = '', style }: LogoProps) {
-  const strokeColor = color ?? 'var(--color-ink)'
+  const strokeColor = color ?? 'currentColor'
 
   if (compact) {
     return (

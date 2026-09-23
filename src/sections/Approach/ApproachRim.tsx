@@ -11,10 +11,10 @@ interface RimTextItemProps {
 }
 
 function RimTextItemComponent({ text, startOffset, index, active }: RimTextItemProps) {
-  // Active item opacity 1.0, otherwise 0.22, smoothly interpolated
+  // Active item opacity 1.0, otherwise 0.28 (spec Level 3), smoothly interpolated
   const opacity = useTransform(active, (v) => {
     const dist = Math.abs(v - index)
-    return 0.22 + 0.78 * Math.max(0, 1 - dist)
+    return 0.28 + 0.72 * Math.max(0, 1 - dist)
   })
 
   return (

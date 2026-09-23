@@ -37,8 +37,8 @@ export default function Numbers() {
     return 1 + eased * 0.08
   })
 
-  // Veil: opacity 0 -> 0.3 on exit
-  const veilOpacity = useTransform(exitProgress, [0, 1], [0, 0.3])
+  // Veil: opacity 0 -> 1 on exit with --c-veil
+  const veilOpacity = useTransform(exitProgress, [0, 1], [0, 1])
 
   // ─── Intro Animations (0.00 to 0.09) ───────────────────────────────────────
   // Tag fades in and moves slightly up
@@ -82,7 +82,7 @@ export default function Numbers() {
       id="numbers"
       ref={wrapperRef}
       aria-labelledby="numbers-heading"
-      className="numbers-wrapper"
+      className="numbers-wrapper surface-stone"
       style={{
         height: shouldReduceMotion
           ? 'auto'
@@ -96,7 +96,7 @@ export default function Numbers() {
 
       {/* Pinned Sticky Stage */}
       <div
-        className="numbers-stage"
+        className="numbers-stage surface-stone"
         style={{
           position: shouldReduceMotion ? 'relative' : 'sticky',
           minHeight: shouldReduceMotion ? '100svh' : undefined,
@@ -176,7 +176,7 @@ export default function Numbers() {
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundColor: '#000000',
+              backgroundColor: 'var(--c-veil)',
               opacity: shouldReduceMotion ? 0 : veilOpacity,
               pointerEvents: 'none',
               zIndex: 20,

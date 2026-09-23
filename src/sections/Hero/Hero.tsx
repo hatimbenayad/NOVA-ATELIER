@@ -64,7 +64,7 @@ function VillaImage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'var(--color-ink-soft)',
+          color: 'var(--fg-soft)',
           fontFamily: "'Jost', sans-serif",
           fontSize: '0.6875rem',
           letterSpacing: '0.25em',
@@ -159,11 +159,12 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-headline"
+      className="surface-ground"
       style={{
         position: 'relative',
         /* Use dvh so it fills real viewport on mobile, fallback to svh / vh */
         minHeight: 'max(100svh, 720px)',
-        background: 'radial-gradient(ellipse 80% 60% at 50% 20%, #F6F6F5 0%, #EEEEEE 55%, #E6E6E5 100%)',
+        background: 'radial-gradient(ellipse 70% 60% at 50% 18%, var(--c-paper) 0%, var(--c-ground) 80%, var(--c-ground) 100%)',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -208,7 +209,7 @@ export default function Hero() {
               marginTop: '8px',
               width: '28px',
               height: '1px',
-              backgroundColor: 'var(--color-hairline)',
+              backgroundColor: 'var(--line-strong)',
               transformOrigin: 'left',
             }}
           />
@@ -247,7 +248,7 @@ export default function Hero() {
               marginTop: '8px',
               width: '28px',
               height: '1px',
-              backgroundColor: 'var(--color-hairline)',
+              backgroundColor: 'var(--line-strong)',
               transformOrigin: 'right',
             }}
           />
@@ -278,7 +279,7 @@ export default function Hero() {
               fontSize: 'clamp(1.75rem, 3.1vw, 3.25rem)',
               letterSpacing: '0.02em',
               lineHeight: 1.1,
-              color: 'var(--color-ink)',
+              color: 'var(--fg)',
               textTransform: 'uppercase',
               textWrap: 'balance',
               maxWidth: 'none',
@@ -299,7 +300,7 @@ export default function Hero() {
             fontSize: 'clamp(0.625rem, 0.85vw, 0.8rem)',
             letterSpacing: '0.38em',
             textTransform: 'uppercase',
-            color: 'var(--color-ink-soft)',
+            color: 'var(--fg-soft)',
             /* Compensate trailing letter-spacing for optical centering */
             paddingLeft: '0.38em',
             margin: 0,
@@ -397,7 +398,7 @@ export default function Hero() {
                 maxWidth: '1150px',
                 height: '26px',
                 borderRadius: '50%',
-                background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse at center, var(--c-line) 0%, transparent 70%)',
                 filter: 'blur(10px)',
                 zIndex: 0,
                 pointerEvents: 'none',
@@ -415,7 +416,7 @@ export default function Hero() {
                 left: '8%',
                 right: '8%',
                 height: '14px',
-                background: 'linear-gradient(to top, rgba(238,238,238,0.6) 0%, transparent 100%)',
+                background: 'linear-gradient(to top, color-mix(in srgb, var(--c-ground) 60%, transparent) 0%, transparent 100%)',
                 pointerEvents: 'none',
                 zIndex: 2,
               }}
@@ -455,7 +456,7 @@ export default function Hero() {
                   display: 'block',
                   width: '24px',
                   height: '1px',
-                  backgroundColor: 'var(--color-hairline)',
+                  backgroundColor: 'var(--line-strong)',
                   transformOrigin: 'left',
                 }}
               />
@@ -465,7 +466,7 @@ export default function Hero() {
                   fontSize: '0.6875rem',
                   letterSpacing: '0.4em',
                   textTransform: 'uppercase',
-                  color: 'var(--color-ink)',
+                  color: 'var(--fg)',
                   paddingLeft: '0.4em',
                 }}
               >
@@ -480,7 +481,7 @@ export default function Hero() {
                   display: 'block',
                   width: '24px',
                   height: '1px',
-                  backgroundColor: 'var(--color-hairline)',
+                  backgroundColor: 'var(--line-strong)',
                   transformOrigin: 'right',
                 }}
               />
@@ -493,7 +494,7 @@ export default function Hero() {
                 fontSize: '0.5625rem',
                 letterSpacing: '0.35em',
                 textTransform: 'uppercase',
-                color: 'var(--color-ink-soft)',
+                color: 'var(--fg-soft)',
                 marginTop: '3px',
                 paddingLeft: '0.35em',
               }}

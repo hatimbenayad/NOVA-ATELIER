@@ -46,7 +46,7 @@ function CenterRowItemComponent({
 
       {isIntro ? (
         <span className="approach-numeral-mask" style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <motion.span style={{ y, display: 'inline-flex', color: 'var(--ink-on-dome)' }}>
+          <motion.span style={{ y, display: 'inline-flex', color: 'var(--fg)' }}>
             <LogoMark size={56} color="currentColor" />
           </motion.span>
         </span>

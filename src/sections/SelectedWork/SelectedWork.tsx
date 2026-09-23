@@ -126,7 +126,7 @@ export default function SelectedWork({ reveal, tailScreens = 0 }: SelectedWorkPr
       const eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p
       const r = Math.max(0, Math.min(100, eased * 100))
 
-      const maskValue = `radial-gradient(circle farthest-corner at 50% 50%, transparent ${r}%, #000 calc(${r}% + 0.5%))`
+      const maskValue = `radial-gradient(circle farthest-corner at 50% 50%, transparent ${r}%, var(--fg) calc(${r}% + 0.5%))`
       workLayer.style.maskImage = maskValue
       workLayer.style.webkitMaskImage = maskValue
     }
@@ -237,7 +237,7 @@ export default function SelectedWork({ reveal, tailScreens = 0 }: SelectedWorkPr
       id="work"
       ref={wrapperRef}
       aria-labelledby="work-heading"
-      className="selected-work-wrapper"
+      className="selected-work-wrapper surface-ground"
       style={{ height: wrapperHeight }}
     >
       {/* Visually hidden heading for accessibility */}
@@ -249,7 +249,7 @@ export default function SelectedWork({ reveal, tailScreens = 0 }: SelectedWorkPr
       <div id="selected-work" style={{ position: 'absolute', top: 0, height: 0 }} aria-hidden="true" />
 
       {/* Sticky Stage: 100svh pinned container */}
-      <div className="selected-work-stage">
+      <div className="selected-work-stage surface-ground">
         {/* 1. Reveal Slot (Layer beneath work layer) */}
         <div
           ref={revealSlotRef}
@@ -266,7 +266,7 @@ export default function SelectedWork({ reveal, tailScreens = 0 }: SelectedWorkPr
         {/* 2. Work Layer (Upper layer with circular hole mask) */}
         <div
           ref={workLayerRef}
-          className="selected-work-layer"
+          className="selected-work-layer surface-ground"
         >
           {/* Horizontal track vertically centered on 52% axis */}
           <div className="selected-work-track-container">

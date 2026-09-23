@@ -4,7 +4,7 @@ function ApproachDomeComponent() {
   return (
     <div
       aria-hidden="true"
-      className="approach-dome"
+      className="approach-dome surface-paper"
     />
   )
 }

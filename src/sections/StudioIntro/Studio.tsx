@@ -180,7 +180,7 @@ export default function Studio() {
   // ─── Reduced Motion Branch: Stacked static view ────────────────────────────
   if (prefersReduced) {
     return (
-      <section id="studio" aria-labelledby="studio-heading" className="studio-section" style={{ position: 'relative', height: 'auto' }}>
+      <section id="studio" aria-labelledby="studio-heading" className="studio-section surface-paper" style={{ position: 'relative', height: 'auto' }}>
         <div className="studio-grid" style={{ position: 'relative', height: 'auto', paddingBottom: '3rem' }}>
           <div className="studio-headline-col">
             <h2 id="studio-heading" className="studio-headline">
@@ -255,7 +255,7 @@ export default function Studio() {
   const nextSlide = studioContent.slides[nextSlideIndex]
 
   return (
-    <section id="studio" aria-labelledby="studio-heading" className="studio-section">
+    <section id="studio" aria-labelledby="studio-heading" className="studio-section surface-paper">
       {/* Hidden image preloader for upcoming slide */}
       <img
         src={nextSlide.src}

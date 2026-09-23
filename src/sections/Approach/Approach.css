@@ -16,7 +16,7 @@
   height: 100svh;
   overflow: clip;
   background-color: transparent;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg);
   user-select: none;
 
   /* Dome geometry tokens */
@@ -70,10 +70,14 @@
   left: 50%;
   transform: translateX(-50%);
   top: var(--dome-crown);
-  width: calc(var(--dome-r) * 2);
-  height: calc(var(--dome-r) * 2);
-  border-radius: 50%;
-  background-color: var(--surface-dome, #171614);
+  /* Wide arch: at least 104vw so it covers the full viewport even with a scrollbar */
+  --dome-w: max(calc(var(--dome-r) * 2), 104vw);
+  width: var(--dome-w);
+  /* Extends well past the stage bottom so no photo peeks below */
+  height: calc(var(--dome-r) + 100svh);
+  /* Elliptical top, straight sides — dome-r sets the vertical curve radius */
+  border-radius: 50% 50% 0 0 / var(--dome-r) var(--dome-r) 0 0;
+  background-color: var(--bg);
   z-index: 2;
   pointer-events: none;
   will-change: transform;
@@ -100,7 +104,7 @@
   text-transform: uppercase;
   font-size: 92px;
   letter-spacing: 0.05em;
-  fill: var(--ink-on-dome, #F1EEE7);
+  fill: var(--fg);
   transition: opacity 0.2s ease-out;
 }
 
@@ -140,7 +144,7 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg-soft);
   line-height: 1;
 }
 
@@ -158,7 +162,7 @@
   font-weight: 300;
   font-size: clamp(4rem, 8vw, 8.5rem);
   line-height: 1;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg);
   will-change: transform;
 }
 
@@ -170,7 +174,7 @@
   top: 58svh;
   width: 1px;
   height: 22svh;
-  background-color: var(--dome-line, rgba(241, 238, 231, 0.35));
+  background-color: var(--line);
   pointer-events: none;
 }
 
@@ -178,7 +182,7 @@
   position: absolute;
   inset: 0;
   width: 100%;
-  background-color: var(--ink-on-dome, #F1EEE7);
+  background-color: var(--fg);
   transform-origin: top center;
 }
 
@@ -206,7 +210,7 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   line-height: 1.7;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg-soft);
   margin: 0;
 }
 
@@ -233,8 +237,8 @@
 
 /* ─── Reduced Motion Static Section ────────────────────────────────────────── */
 .approach-reduced-motion {
-  background-color: var(--surface-dome, #171614);
-  color: var(--ink-on-dome, #F1EEE7);
+  background-color: var(--bg);
+  color: var(--fg);
   padding: 6rem 5% 8rem;
   margin-top: 0 !important;
 }
@@ -243,7 +247,7 @@
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 400;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg);
   margin-bottom: 4rem;
   text-align: center;
 }
@@ -274,7 +278,7 @@
   font-weight: 300;
   font-size: 2.5rem;
   line-height: 1;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg);
   margin-bottom: 0.5rem;
 }
 
@@ -285,7 +289,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
-  color: var(--ink-on-dome, #F1EEE7);
+  color: var(--fg);
 }
 
 .approach-reduced-desc {
@@ -293,7 +297,7 @@
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.7;
-  color: rgba(241, 238, 231, 0.75);
+  color: var(--fg-soft);
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

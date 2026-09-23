@@ -1,6 +1,50 @@
 @import './tokens.css';
 @import 'tailwindcss';
 
+@config "../../tailwind.config.js";
+
+/* ─── Surface Classes ─────────────────────────────────────────────────────── */
+
+.surface-paper {
+  --bg: var(--c-paper);
+  --fg: var(--c-ink);
+  --fg-soft: var(--c-ink-soft);
+  --line: var(--c-line);
+  --line-strong: var(--c-line-strong);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.surface-ground {
+  --bg: var(--c-ground);
+  --fg: var(--c-ink);
+  --fg-soft: var(--c-ink-soft);
+  --line: var(--c-line);
+  --line-strong: var(--c-line-strong);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.surface-stone {
+  --bg: var(--c-stone);
+  --fg: var(--c-ink);
+  --fg-soft: var(--c-ink-soft);
+  --line: var(--c-line);
+  --line-strong: var(--c-line-strong);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.surface-dark {
+  --bg: var(--c-dark);
+  --fg: var(--c-paper);
+  --fg-soft: var(--c-on-dark-soft);
+  --line: var(--c-line-on-dark);
+  --line-strong: var(--c-line-strong-on-dark);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
 /* ─── Base Reset ──────────────────────────────────────────────────────────── */
 
 *,
@@ -9,6 +53,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* ─── Selection ───────────────────────────────────────────────────────────── */
+
+::selection {
+  background: var(--c-ink);
+  color: var(--c-paper);
 }
 
 /* ─── Lenis Smooth Scroll ─────────────────────────────────────────────────── */
@@ -34,9 +85,11 @@ html.lenis body {
   pointer-events: none;
 }
 
+html,
 body {
-  background-color: var(--color-bg);
-  color: var(--color-ink);
+  background-color: var(--c-ground);
+  color: var(--c-ink);
+  color-scheme: light;
   font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
   line-height: 1.6;
@@ -60,7 +113,7 @@ body {
 .hairline {
   display: block;
   height: 1px;
-  background-color: var(--color-hairline);
+  background-color: var(--line);
 }
 
 /* ─── Label Text ──────────────────────────────────────────────────────────── */
@@ -71,7 +124,7 @@ body {
   font-weight: 400;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-ink-soft);
+  color: var(--fg-soft);
   line-height: 1.9;
 }
 
@@ -81,7 +134,7 @@ body {
   font-weight: 400;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-soft);
+  color: var(--fg-soft);
 }
 
 /* ─── Skip Link ───────────────────────────────────────────────────────────── */
@@ -92,8 +145,8 @@ body {
   left: 1rem;
   z-index: 9999;
   padding: 0.5rem 1rem;
-  background: var(--color-ink);
-  color: var(--color-bg);
+  background: var(--fg);
+  color: var(--bg);
   font-size: 0.875rem;
   text-decoration: none;
   border-radius: var(--radius-sm);
@@ -115,7 +168,7 @@ body {
 /* ─── Focus Visible ───────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: 2px solid var(--color-ink);
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
   border-radius: 2px;
 }

@@ -8,14 +8,14 @@ export default function FeaturedProject() {
     <section
       aria-labelledby="featured-headline"
       style={{
-        backgroundColor: 'var(--color-bg-edge, #E6E6E5)',
+        backgroundColor: 'var(--c-dark)',
       }}
-      className="section-padding"
+      className="section-padding surface-dark"
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3.5%' }}>
         {/* Eyebrow */}
         <Reveal>
-          <span className="label" style={{ marginBottom: '3rem', display: 'block' }}>
+          <span className="label" style={{ marginBottom: '3rem', display: 'block', color: 'var(--c-paper)' }}>
             {featuredProjectContent.eyebrow}
           </span>
         </Reveal>
@@ -36,7 +36,7 @@ export default function FeaturedProject() {
                 aspectRatio: '4/5',
                 borderRadius: '6px',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #CEC9C1 0%, #BAB5AE 100%)',
+                background: 'var(--c-stone)',
                 position: 'relative',
               }}
             >
@@ -67,7 +67,7 @@ export default function FeaturedProject() {
                     fontSize: '0.5625rem',
                     letterSpacing: '0.35em',
                     textTransform: 'uppercase',
-                    color: 'rgba(14,14,14,0.2)',
+                    color: 'var(--c-line-on-dark)',
                   }}
                 >
                   Featured
@@ -77,9 +77,9 @@ export default function FeaturedProject() {
           </Reveal>
 
           {/* Content */}
-          <div>
+          <div style={{ background: 'var(--c-scrim)', padding: '2rem', borderRadius: '4px' }}>
             <Reveal delay={0.1}>
-              <span className="label" style={{ color: 'var(--color-ink-soft)', marginBottom: '0.5rem', display: 'block' }}>
+              <span className="label" style={{ color: 'var(--c-paper)', marginBottom: '0.5rem', display: 'block' }}>
                 {featuredProjectContent.category}
               </span>
             </Reveal>
@@ -91,7 +91,7 @@ export default function FeaturedProject() {
                   fontWeight: 500,
                   fontSize: 'clamp(2rem, 3.5vw, 3.5rem)',
                   lineHeight: 1.05,
-                  color: 'var(--color-ink)',
+                  color: 'var(--c-paper)',
                   marginBottom: '0.5rem',
                 }}
               >
@@ -105,9 +105,8 @@ export default function FeaturedProject() {
                   fontSize: '0.6875rem',
                   letterSpacing: '0.25em',
                   textTransform: 'uppercase',
-                  color: 'var(--color-ink-soft)',
+                  color: 'var(--c-on-dark-soft)',
                   marginBottom: '2rem',
-                  opacity: 0.6,
                 }}
               >
                 {featuredProjectContent.location}
@@ -121,7 +120,7 @@ export default function FeaturedProject() {
                     fontFamily: "'Jost', sans-serif",
                     fontSize: '0.9375rem',
                     lineHeight: 1.8,
-                    color: 'var(--color-ink-soft)',
+                    color: 'var(--c-paper)',
                     marginBottom: '1.25rem',
                   }}
                 >
@@ -138,7 +137,7 @@ export default function FeaturedProject() {
                   gap: '2.5rem',
                   margin: '2.5rem 0',
                   paddingTop: '2rem',
-                  borderTop: '1px solid var(--color-hairline)',
+                  borderTop: '1px solid var(--c-line-on-dark)',
                 }}
               >
                 {featuredProjectContent.stats.map((s) => (
@@ -148,7 +147,7 @@ export default function FeaturedProject() {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 500,
                         fontSize: '1.625rem',
-                        color: 'var(--color-ink)',
+                        color: 'var(--c-paper)',
                         lineHeight: 1,
                         marginBottom: '0.25rem',
                       }}
@@ -161,8 +160,7 @@ export default function FeaturedProject() {
                         fontSize: '0.5625rem',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
-                        color: 'var(--color-ink-soft)',
-                        opacity: 0.6,
+                        color: 'var(--c-on-dark-soft)',
                       }}
                     >
                       {s.label}

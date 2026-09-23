@@ -83,8 +83,8 @@ export default function Navbar() {
           zIndex: 100,
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          backgroundColor: 'rgba(238, 238, 238, 0.88)',
-          borderBottom: '1px solid var(--color-hairline)',
+          backgroundColor: 'color-mix(in srgb, var(--c-ground) 85%, transparent)',
+          borderBottom: '1px solid var(--c-line)',
         }}
       >
         <nav
@@ -107,7 +107,7 @@ export default function Navbar() {
               fontWeight: 500,
               fontSize: '0.875rem',
               letterSpacing: '0.25em',
-              color: 'var(--color-ink)',
+              color: 'var(--c-ink)',
               textTransform: 'uppercase',
             }}>
               Nova Atelier
@@ -135,12 +135,12 @@ export default function Navbar() {
                     fontWeight: 400,
                     letterSpacing: '0.25em',
                     textTransform: 'uppercase',
-                    color: 'var(--color-ink-soft)',
+                    color: 'var(--c-ink-soft)',
                     textDecoration: 'none',
                     transition: 'color 0.2s ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-ink)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-ink-soft)')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--c-ink)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--c-ink-soft)')}
                 >
                   {link.label}
                 </a>
@@ -173,7 +173,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '24px',
                 height: '1px',
-                background: 'var(--color-ink)',
+                background: 'var(--c-ink)',
                 transition: 'transform 0.3s ease, opacity 0.3s ease',
                 transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
               }}
@@ -184,7 +184,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '18px',
                 height: '1px',
-                background: 'var(--color-ink)',
+                background: 'var(--c-ink)',
                 opacity: menuOpen ? 0 : 1,
                 transition: 'opacity 0.3s ease',
               }}
@@ -195,7 +195,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '24px',
                 height: '1px',
-                background: 'var(--color-ink)',
+                background: 'var(--c-ink)',
                 transition: 'transform 0.3s ease',
                 transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
               }}
@@ -214,6 +214,7 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
+            className="surface-ground"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -222,7 +223,6 @@ export default function Navbar() {
               position: 'fixed',
               inset: 0,
               zIndex: 99,
-              backgroundColor: 'var(--color-bg)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -243,7 +243,7 @@ export default function Navbar() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: '2.5rem',
                   fontWeight: 500,
-                  color: 'var(--color-ink)',
+                  color: 'var(--fg)',
                   textDecoration: 'none',
                   letterSpacing: '0.02em',
                 }}
@@ -266,7 +266,7 @@ export default function Navbar() {
                 fontSize: '0.6875rem',
                 letterSpacing: '0.3em',
                 textTransform: 'uppercase',
-                color: 'var(--color-ink-soft)',
+                color: 'var(--fg)',
               }}
             >
               Close
