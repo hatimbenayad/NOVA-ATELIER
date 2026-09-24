@@ -124,11 +124,11 @@ export interface JournalPost {
 // ─── Navigation ───────────────────────────────────────────────────────────────
 
 export const navLinks: NavLink[] = [
-  { label: 'Work',     href: '#work' },
-  { label: 'Studio',   href: '#studio' },
+  { label: 'Work', href: '#work' },
+  { label: 'Studio', href: '#studio' },
   { label: 'Approach', href: '#approach' },
-  { label: 'Journal',  href: '#journal' },
-  { label: 'Contact',  href: '#contact' },
+  { label: 'Journal', href: '#journal' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
@@ -142,6 +142,22 @@ export const heroContent = {
     line1: 'SINCE 2012',
     line2: 'BARCELONA · MADRID',
   },
+  // Desktop top-bar nav links (shown in hero header, hidden on mobile)
+  navLinks: [
+    { label: 'Work', href: '#work', active: true },
+    { label: 'Studio', href: '#studio', active: false },
+    { label: 'Approach', href: '#approach', active: false },
+    { label: 'Journal', href: '#journal', active: false },
+    { label: 'Contact', href: '#contact', active: false },
+  ],
+  eyebrow: 'Architecture & Interior Studio',
+  headlineLine1: 'Spaces with',
+  headlineLine2: 'a point of view.',
+  tags: ['Architecture', 'Interiors', 'Landscape'],
+  description1:
+    'Founded in Barcelona in 2012, NOVA Atelier works across architecture, interiors and the selection of materials.',
+  description2:
+    'Every project begins with the site, the light and the daily rituals of the people who will live there.',
   headline: 'Spaces with a point of view.',
   subheadline: 'Architecture · Interiors · Landscape',
   villaAlt: 'Contemporary villa with timber and white stone facades surrounded by palm trees',
@@ -297,11 +313,11 @@ export const studioContent: StudioContent = {
 export const numbersContent: NumbersContent = {
   tag: 'By the numbers',
   stats: [
-    { value: '12+',  label: 'Years' },
-    { value: '48',   label: 'Projects' },
+    { value: '12+', label: 'Years' },
+    { value: '48', label: 'Projects' },
     { value: '2012', label: 'Since' },
-    { value: '9',    label: 'Cities' },
-    { value: '17',   label: 'Awards' },
+    { value: '9', label: 'Cities' },
+    { value: '17', label: 'Awards' },
   ],
   images: [
     {
@@ -556,7 +572,7 @@ export const footerContent = {
   ],
   social: [
     { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'LinkedIn',  href: 'https://linkedin.com' },
+    { label: 'LinkedIn', href: 'https://linkedin.com' },
     { label: 'Pinterest', href: 'https://pinterest.com' },
   ],
 }

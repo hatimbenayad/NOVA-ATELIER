@@ -7,11 +7,10 @@ import { heroCards } from './hero.data'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 /** ─────────────────────────────────────────────────────────────────────────── *
- *  HERO SECTION — v2
- *  Reference: Pancharatna / Selvara layout
- *  Villa image: transparent PNG cut-out, no blend-mode, no container box.
- *  Villa is dominant (92–100% container width), fills 50–55% of viewport height.
- *  Bottom label is perfectly centered horizontally.
+ *  HERO SECTION
+ *  Desktop: Split layout with Left text column, Right 4 cards row, top nav.
+ *  Mobile (<768px): 4 cards hidden, text bigger & moved down, top navbar sticky.
+ *  Villa image: transparent cut-out with soft blurred elliptical ground shadow.
  * ─────────────────────────────────────────────────────────────────────────── */
 
 // ─── Animation helpers ────────────────────────────────────────────────────────
@@ -46,12 +45,6 @@ const drawInRight = (delay: number = 0) => ({
 
 // ─── Villa image ──────────────────────────────────────────────────────────────
 
-/**
- * Renders the villa cut-out directly on the page background.
- * - No mix-blend-mode, no border, no container background.
- * - Error fallback: a small unobtrusive dev placeholder shown only on load failure.
- * - Normal render: just the <picture> element, transparent PNG sits on grey bg.
- */
 function VillaImage() {
   const [errored, setErrored] = useState(false)
 
@@ -81,7 +74,6 @@ function VillaImage() {
     <img
       src="/images/hero/villa.png"
       alt={heroContent.villaAlt}
-      /* Intrinsic dimensions from the actual image (1927×816). Set so there's no CLS. */
       width={1927}
       height={816}
       fetchPriority="high"
@@ -92,7 +84,7 @@ function VillaImage() {
         width: 'auto',
         maxWidth: 'min(94vw, 1420px)',
         height: 'auto',
-        maxHeight: 'clamp(280px, 50vh, 500px)',
+        maxHeight: 'clamp(280px, 48vh, 500px)',
         objectFit: 'contain',
         objectPosition: 'bottom center',
         display: 'block',
@@ -102,7 +94,7 @@ function VillaImage() {
   )
 }
 
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ─── Hero Component ───────────────────────────────────────────────────────────
 
 export default function Hero() {
   const prefersReduced = useReducedMotion()
@@ -129,9 +121,7 @@ export default function Hero() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
     const tick = () => {
-      // Villa: up to 8px with mouse, same direction
       const villaTarget = mouseRef.current.y * 8
-      // Cards: up to 4px, opposite direction
       const cardsTarget = mouseRef.current.y * -4
 
       currentOffset.current.villa = lerp(currentOffset.current.villa, villaTarget, 0.06)
@@ -159,10 +149,9 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-headline"
-      className="surface-ground"
+      className="surface-ground hero-section"
       style={{
         position: 'relative',
-        /* Use dvh so it fills real viewport on mobile, fallback to svh / vh */
         minHeight: 'max(100svh, 720px)',
         background: 'radial-gradient(ellipse 70% 60% at 50% 18%, var(--c-paper) 0%, var(--c-ground) 80%, var(--c-ground) 100%)',
         display: 'flex',
@@ -171,26 +160,25 @@ export default function Hero() {
         paddingBottom: 0,
       }}
     >
-      {/* ── TOP ROW ─────────────────────────────────────────────────────────── */}
-      {/*
-        Tightened from 3.5% → 2% top padding to reclaim space for the villa.
-        On 1920×1080 this saves ~40px at the top.
-      */}
+      {/* ── DESKTOP TOP ROW (hidden on mobile where sticky Navbar serves as header) ── */}
       <div
+        className="hero-top-row"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr auto 1fr',
-          alignItems: 'flex-start',
-          padding: '1.2% 3.5% 0',
-          gap: '1rem',
+          alignItems: 'center',
+          padding: '1.4% 3.5% 0',
+          gap: '1.5rem',
           flexShrink: 0,
+          zIndex: 10,
         }}
       >
-        {/* ── Top-left corner block ── */}
+        {/* Top-left corner block */}
         <motion.div
           variants={fadeUp(0.05)}
           initial={prefersReduced ? 'visible' : 'hidden'}
           animate="visible"
+          className="hero-top-left"
           style={{ display: 'flex', flexDirection: 'column', gap: 0 }}
         >
           <span className="label" style={{ display: 'block' }}>
@@ -215,118 +203,247 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* ── Top-center logo ── */}
+        {/* Top-center logo */}
         <motion.div
           variants={fadeUp(0.1)}
           initial={prefersReduced ? 'visible' : 'hidden'}
           animate="visible"
+          className="hero-top-center"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <Logo />
         </motion.div>
 
-        {/* ── Top-right corner block ── */}
+        {/* Top-right nav links + location */}
         <motion.div
           variants={fadeUp(0.05)}
           initial={prefersReduced ? 'visible' : 'hidden'}
           animate="visible"
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0 }}
+          className="hero-top-right"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '1.5rem',
+          }}
         >
-          <span className="label" style={{ display: 'block', textAlign: 'right' }}>
-            {heroContent.topRight.line1}
-          </span>
-          <span className="label" style={{ display: 'block', textAlign: 'right' }}>
-            {heroContent.topRight.line2}
-          </span>
-          <motion.span
-            aria-hidden="true"
-            variants={drawInRight(0.25)}
-            initial={prefersReduced ? 'visible' : 'hidden'}
-            animate="visible"
+          <nav
+            className="hero-nav-links"
+            aria-label="Hero navigation"
             style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.35rem',
+            }}
+          >
+            {heroContent.navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: '0.625rem',
+                  fontWeight: link.active ? 500 : 400,
+                  letterSpacing: '0.22em',
+                  textTransform: 'uppercase',
+                  color: link.active ? 'var(--fg)' : 'var(--fg-soft)',
+                  textDecoration: 'none',
+                  position: 'relative',
+                  paddingBottom: '4px',
+                  transition: 'color 300ms ease',
+                }}
+                className="hero-nav-item"
+              >
+                {link.label}
+                {link.active && (
+                  <motion.span
+                    aria-hidden="true"
+                    variants={drawIn(0.35)}
+                    initial={prefersReduced ? 'visible' : 'hidden'}
+                    animate="visible"
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '1px',
+                      backgroundColor: 'var(--line-strong)',
+                      transformOrigin: 'left',
+                    }}
+                  />
+                )}
+              </a>
+            ))}
+          </nav>
+
+          <span
+            className="hero-top-divider"
+            aria-hidden="true"
+            style={{
+              width: '1px',
+              height: '24px',
+              backgroundColor: 'var(--line)',
               display: 'block',
-              marginTop: '8px',
-              width: '28px',
-              height: '1px',
-              backgroundColor: 'var(--line-strong)',
-              transformOrigin: 'right',
             }}
           />
+
+          <div
+            className="hero-since-block"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              gap: 0,
+            }}
+          >
+            <span className="label" style={{ display: 'block', textAlign: 'right' }}>
+              {heroContent.topRight.line1}
+            </span>
+            <span className="label" style={{ display: 'block', textAlign: 'right' }}>
+              {heroContent.topRight.line2}
+            </span>
+          </div>
         </motion.div>
       </div>
 
-      {/* ── HEADLINE BLOCK ──────────────────────────────────────────────────── */}
+      {/* ── SPLIT HERO ROW (Text Left, Cards Right) ────────────────────────── */}
       <div
+        className="hero-split-row"
         style={{
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          textAlign: 'center',
-          padding: '0.8% 3.5% 0',
-          gap: '0.35rem',
+          justifyContent: 'space-between',
+          padding: '1.5% 3.5% 0',
+          maxWidth: '1620px',
+          margin: '0 auto',
+          width: '100%',
+          boxSizing: 'border-box',
+          gap: '2.5rem',
           flexShrink: 0,
+          zIndex: 5,
         }}
       >
-        <div style={{ overflow: 'hidden' }}>
+        {/* ── Left Column: Headlines & Editorial Copy ── */}
+        <div
+          className="hero-text-col"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            textAlign: 'left',
+            maxWidth: '520px',
+            flexShrink: 0,
+          }}
+        >
+          {/* Eyebrow */}
+          <motion.span
+            variants={fadeUp(0.15)}
+            initial={prefersReduced ? 'visible' : 'hidden'}
+            animate="visible"
+            className="hero-eyebrow"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: '0.6875rem',
+              fontWeight: 400,
+              letterSpacing: '0.34em',
+              textTransform: 'uppercase',
+              color: 'var(--fg-soft)',
+              marginBottom: '0.75rem',
+              display: 'block',
+            }}
+          >
+            {heroContent.eyebrow}
+          </motion.span>
+
+          {/* Main H1 Headline */}
           <motion.h1
             id="hero-headline"
             variants={fadeUp(0.2, 12)}
             initial={prefersReduced ? 'visible' : 'hidden'}
             animate="visible"
+            className="hero-title"
             style={{
               fontFamily: "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
               fontWeight: 500,
-              fontSize: 'clamp(1.75rem, 3.1vw, 3.25rem)',
-              letterSpacing: '0.02em',
-              lineHeight: 1.1,
+              fontSize: 'clamp(2.35rem, 3.8vw, 4.4rem)',
+              letterSpacing: '0.015em',
+              lineHeight: 1.02,
               color: 'var(--fg)',
               textTransform: 'uppercase',
-              textWrap: 'balance',
-              maxWidth: 'none',
-              margin: '0 auto',
+              margin: '0 0 1.15rem 0',
             }}
           >
-            {heroContent.headline}
+            {heroContent.headlineLine1}
+            <br />
+            {heroContent.headlineLine2}
           </motion.h1>
-        </div>
 
-        <motion.p
-          variants={fadeUp(0.3)}
-          initial={prefersReduced ? 'visible' : 'hidden'}
-          animate="visible"
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontWeight: 300,
-            fontSize: 'clamp(0.625rem, 0.85vw, 0.8rem)',
-            letterSpacing: '0.38em',
-            textTransform: 'uppercase',
-            color: 'var(--fg-soft)',
-            /* Compensate trailing letter-spacing for optical centering */
-            paddingLeft: '0.38em',
-            margin: 0,
-          }}
-        >
-          {heroContent.subheadline}
-        </motion.p>
-      </div>
-
-      {/* ── CARDS ROW ───────────────────────────────────────────────────────── */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '0.75% 3.5% 0',
-          flexShrink: 0,
-        }}
-      >
-        <div ref={cardsParallaxRef} style={{ willChange: 'transform' }}>
-          <ul
-            role="list"
+          {/* Category Tags */}
+          <motion.div
+            variants={fadeUp(0.28)}
+            initial={prefersReduced ? 'visible' : 'hidden'}
+            animate="visible"
+            className="hero-tags"
             style={{
               display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '18px',
+              alignItems: 'center',
+              gap: '0.85rem',
+              fontFamily: "'Jost', sans-serif",
+              fontSize: '0.6875rem',
+              fontWeight: 400,
+              letterSpacing: '0.24em',
+              textTransform: 'uppercase',
+              color: 'var(--fg-soft)',
+              marginBottom: '1rem',
+            }}
+          >
+            {heroContent.tags.map((tag, idx) => (
+              <span key={tag} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem' }}>
+                <span>{tag}</span>
+                {idx < heroContent.tags.length - 1 && (
+                  <span style={{ color: 'var(--line-strong)', opacity: 0.4 }} aria-hidden="true">
+                    /
+                  </span>
+                )}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* Description */}
+          <motion.div
+            variants={fadeUp(0.35)}
+            initial={prefersReduced ? 'visible' : 'hidden'}
+            animate="visible"
+            className="hero-description"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: 'clamp(0.75rem, 0.88vw, 0.875rem)',
+              lineHeight: 1.65,
+              color: 'var(--fg-soft)',
+            }}
+          >
+            <p style={{ margin: 0 }}>{heroContent.description1}</p>
+            <p style={{ margin: 0 }}>{heroContent.description2}</p>
+          </motion.div>
+        </div>
+
+        {/* ── Right Column: Project Thumbnail Cards (hidden on mobile) ── */}
+        <div
+          className="hero-cards-col"
+          ref={cardsParallaxRef}
+          style={{
+            willChange: 'transform',
+            flexShrink: 0,
+          }}
+        >
+          <ul
+            role="list"
+            className="hero-cards-list"
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '16px',
               listStyle: 'none',
               padding: 0,
               margin: 0,
@@ -335,7 +452,7 @@ export default function Hero() {
             {heroCards.map((card, i) => (
               <motion.li
                 key={card.id}
-                variants={fadeUp(0.4 + i * 0.08, 10, 0.96)}
+                variants={fadeUp(0.4 + i * 0.08, 10, 0.98)}
                 initial={prefersReduced ? 'visible' : 'hidden'}
                 animate="visible"
                 style={{ listStyle: 'none', display: 'flex' }}
@@ -349,6 +466,7 @@ export default function Hero() {
 
       {/* ── VILLA IMAGE AREA ─────────────────────────────────────────────────── */}
       <div
+        className="hero-villa-area"
         style={{
           flex: 1,
           minHeight: 0,
@@ -507,11 +625,84 @@ export default function Hero() {
 
       {/* ── RESPONSIVE OVERRIDES ─────────────────────────────────────────────── */}
       <style>{`
-        /* Mobile (<640px): cards 2×2 grid, villa nearly full-width */
-        @media (max-width: 639px) {
-          /* cards list becomes 2-col grid */
+        .hero-nav-item:hover {
+          color: var(--fg) !important;
         }
-        /* Tablet (640–1023px): same single-row layout, just smaller */
+
+        /* Large desktop / laptop scaling */
+        @media (max-width: 1280px) {
+          .hero-nav-links {
+            gap: 1rem !important;
+          }
+        }
+
+        /* Medium tablet / compact laptop */
+        @media (max-width: 1140px) {
+          .hero-nav-links,
+          .hero-top-divider {
+            display: none !important;
+          }
+          .hero-split-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 1.75rem !important;
+          }
+          .hero-text-col {
+            align-items: center !important;
+            text-align: center !important;
+            max-width: 680px !important;
+          }
+        }
+
+        /* Mobile (<768px):
+           1. Top row in hero hidden (sticky Navbar serves as header with logo & hamburger).
+           2. 4 project pictures disappear completely.
+           3. Text is made bigger and placed down a little with generous top clearance.
+           4. Villa sits right beneath the text. */
+        @media (max-width: 767px) {
+          .hero-top-row {
+            display: none !important;
+          }
+          .hero-cards-col {
+            display: none !important;
+          }
+          .hero-split-row {
+            padding: calc(var(--nav-h, 64px) + 2.25rem) 1.5rem 0 !important;
+            gap: 1.5rem !important;
+          }
+          .hero-text-col {
+            align-items: flex-start !important;
+            text-align: left !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .hero-eyebrow {
+            font-size: 0.75rem !important;
+            letter-spacing: 0.35em !important;
+            margin-bottom: 0.85rem !important;
+          }
+          .hero-title {
+            font-size: clamp(2.65rem, 9.8vw, 3.6rem) !important;
+            line-height: 1.04 !important;
+            letter-spacing: 0.015em !important;
+            margin-bottom: 1.25rem !important;
+          }
+          .hero-tags {
+            font-size: 0.75rem !important;
+            letter-spacing: 0.22em !important;
+            margin-bottom: 1.15rem !important;
+            flex-wrap: wrap !important;
+            gap: 0.6rem !important;
+          }
+          .hero-description {
+            font-size: clamp(0.9375rem, 3.2vw, 1.05rem) !important;
+            line-height: 1.65 !important;
+          }
+          .hero-villa-area {
+            margin-top: 1.5rem !important;
+          }
+        }
       `}</style>
     </section>
   )

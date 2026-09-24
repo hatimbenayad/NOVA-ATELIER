@@ -20,6 +20,22 @@ export default function HeroCard({ card, index }: HeroCardProps) {
     }
   }, [])
 
+  // Split label into 2 lines matching the reference screenshot:
+  // "Residential" / "Architecture →"
+  // "Hospitality" / "Spaces →"
+  // "Interior" / "Design →"
+  // "Landscape &" / "Gardens →"
+  const parts = card.label.split(' ')
+  let line1 = card.label
+  let line2 = ''
+  if (card.label.includes('&')) {
+    line1 = `${parts[0]} &`
+    line2 = parts.slice(2).join(' ')
+  } else if (parts.length > 1) {
+    line1 = parts[0]
+    line2 = parts.slice(1).join(' ')
+  }
+
   return (
     <figure
       style={{ margin: 0, display: 'flex', flexDirection: 'column' }}
@@ -28,9 +44,9 @@ export default function HeroCard({ card, index }: HeroCardProps) {
       {/* ── Card image container ── */}
       <div
         style={{
-          width: 'clamp(110px, 8.5vw, 138px)',
-          aspectRatio: '3/2',
-          borderRadius: '12px',
+          width: 'clamp(122px, 9.2vw, 155px)',
+          aspectRatio: '16/11',
+          borderRadius: '10px',
           overflow: 'hidden',
           boxShadow: 'var(--shadow-card)',
           transition: 'transform 500ms ease, box-shadow 500ms ease',
@@ -44,8 +60,8 @@ export default function HeroCard({ card, index }: HeroCardProps) {
           ref={imgRef}
           src={card.imageSrc}
           alt={card.alt}
-          width={150}
-          height={100}
+          width={180}
+          height={124}
           loading="eager"
           decoding="async"
           fetchPriority="high"
@@ -59,7 +75,7 @@ export default function HeroCard({ card, index }: HeroCardProps) {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: index === 2 ? 'center 75%' : index === 3 ? 'right bottom' : 'center center',
+            objectPosition: 'center center',
             display: 'block',
             transition: 'transform 500ms ease, opacity 0.4s ease',
             opacity: imgLoaded ? 1 : 0,
@@ -71,21 +87,61 @@ export default function HeroCard({ card, index }: HeroCardProps) {
       {/* ── Caption ── */}
       <figcaption
         style={{
-          marginTop: '7px',
+          marginTop: '8px',
           fontFamily: "'Jost', sans-serif",
           fontSize: '0.5625rem',
           fontWeight: 400,
-          letterSpacing: '0.22em',
+          letterSpacing: '0.16em',
           textTransform: 'uppercase',
           color: 'var(--fg-soft)',
           lineHeight: 1.35,
-          maxWidth: 'clamp(110px, 8.5vw, 138px)',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+          gap: '2px',
           textAlign: 'left',
           transition: 'color 500ms ease',
         }}
         className="hero-card-caption"
       >
-        {card.label}
+        <span>{line1}</span>
+        {line2 ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <span>{line2}</span>
+            <span
+              className="hero-card-arrow"
+              aria-hidden="true"
+              style={{
+                fontSize: '0.75rem',
+                lineHeight: 1,
+                flexShrink: 0,
+                transition: 'transform 300ms ease',
+              }}
+            >
+              →
+            </span>
+          </div>
+        ) : (
+          <span
+            className="hero-card-arrow"
+            aria-hidden="true"
+            style={{
+              fontSize: '0.75rem',
+              lineHeight: 1,
+              alignSelf: 'flex-end',
+            }}
+          >
+            →
+          </span>
+        )}
       </figcaption>
 
       <style>{`
@@ -98,6 +154,9 @@ export default function HeroCard({ card, index }: HeroCardProps) {
         }
         .hero-card-group:hover .hero-card-caption {
           color: var(--fg);
+        }
+        .hero-card-group:hover .hero-card-arrow {
+          transform: translateX(3px);
         }
       `}</style>
     </figure>
